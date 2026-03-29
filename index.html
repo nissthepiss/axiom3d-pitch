@@ -669,6 +669,33 @@ footer p { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-s
   .mockup-body { overflow-x: auto; -webkit-overflow-scrolling: touch; }
   .mockup-body > div[style*="grid-template-columns:0.8fr"] { min-width: 500px; }
 }
+@media (max-width: 768px) {
+  /* Compress mockups on mobile */
+  .mockup-body { padding: 12px !important; font-size: 0.65rem !important; line-height: 1.6 !important; }
+  .mockup-bar { padding: 8px 12px; }
+  .mockup-body .poly-event { padding: 8px; margin-bottom: 6px; }
+  .mockup-body .signal-msg { padding: 10px 12px; }
+  .mockup-body .signal-row { font-size: 0.62rem; }
+  .mockup-body .dit-stat-row { padding: 5px 0; font-size: 0.65rem; }
+  /* Compress revival/derivative alert items */
+  .mockup-body > div[style*="padding:12px"] { padding: 8px !important; margin-bottom: 6px !important; }
+  .mockup-body div[style*="font-size:0.75rem"] { font-size: 0.65rem !important; }
+  .mockup-body div[style*="font-size:0.7rem"] { font-size: 0.6rem !important; }
+  /* Compress perps cards */
+  .perps-cards > div { padding: 20px 16px !important; }
+  .perps-cards h3 { font-size: 1rem !important; }
+  .perps-cards p { margin-bottom: 8px !important; font-size: 0.82rem !important; }
+  /* Compress expansion market cards */
+  .market-card { padding: 24px 20px !important; }
+  .market-card p { font-size: 0.82rem !important; }
+  /* Compress chain cards */
+  .expansion-grid .chain-card { padding: 16px !important; }
+  /* Alert pill notifications - tighter */
+  div[style*="max-width:580px"] > div { padding: 10px 14px !important; }
+  div[style*="max-width:580px"] > div > div > div:first-child { font-size: 0.78rem !important; }
+  /* Chain note */
+  .chain-note { padding: 16px 20px !important; font-size: 0.82rem !important; }
+}
 @media (max-width: 480px) {
   .hero h1 { font-size: clamp(2.2rem, 14vw, 4rem); }
   .hero-tagline { font-size: 1rem !important; }
@@ -676,6 +703,12 @@ footer p { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-s
   .friends-text { padding: 20px 16px !important; }
   .stat-card { padding: 20px 16px; }
   .stat-number { font-size: 1.2rem; }
+  /* Extra compression for small phones */
+  .mockup-body { padding: 10px !important; }
+  .perps-cards > div { padding: 16px 12px !important; }
+  .market-card { padding: 20px 16px !important; }
+  section { padding: 60px 16px !important; }
+  .compact-section { padding: 48px 16px !important; }
 }
 </style>
 </head>
