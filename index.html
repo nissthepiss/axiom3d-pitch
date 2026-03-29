@@ -79,6 +79,31 @@ body {
 .built-strip-item { text-align: center; }
 .built-strip-val { font-family: 'Syne', sans-serif; font-size: 1.5rem; font-weight: 800; background: var(--gradient-1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
 .built-strip-lbl { font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); }
+
+/* ====== STATS SCREENSHOT ====== */
+.stats-showcase { position: relative; display: flex; justify-content: flex-start; }
+.stats-showcase-inner {
+  position: relative; max-width: 700px; width: 100%; border-radius: 10px; overflow: visible;
+}
+.stats-showcase-inner img {
+  position: relative; z-index: 1; width: 100%; display: block; border-radius: 10px;
+  box-shadow:
+    0 0 10px 3px rgba(0,212,170,0.04),
+    0 0 20px 6px rgba(153,69,255,0.03),
+    0 2px 12px rgba(0,0,0,0.3);
+}
+@keyframes statsGlow {
+  0% { opacity: 0.5; filter: blur(30px); }
+  100% { opacity: 0.9; filter: blur(40px); }
+}
+@keyframes statsReveal {
+  from { opacity: 0; transform: scale(0.95) translateY(20px); filter: blur(6px); }
+  to { opacity: 1; transform: scale(1) translateY(0); filter: blur(0); }
+}
+.stats-showcase.visible .stats-showcase-inner {
+  animation: statsReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.stats-showcase .stats-showcase-inner { opacity: 0; }
 .ml-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 40px; }
 .ml-card { padding: 20px 24px; border-radius: 12px; background: var(--surface); border: 1px solid rgba(153,69,255,0.06); }
 .ml-card h4 { font-size: 0.95rem; margin-bottom: 8px; }
@@ -693,6 +718,8 @@ footer p { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-s
   .tsl-compare { grid-template-columns: 1fr !important; }
   .two-col { gap: 24px !important; }
   .built-strip { gap: 16px 24px; }
+  .stats-showcase-inner { max-width: 100%; }
+  .stats-showcase[style*="float:right"] { float: none !important; width: 100% !important; margin: 16px 0 !important; display: flex !important; justify-content: center; }
   .built-strip-val { font-size: 1.2rem; }
   /* Fix SVG chart overflow */
   .chart-container svg { margin-left: 16px !important; }
@@ -842,10 +869,19 @@ footer p { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-s
             <span style="color:var(--gold);">gamer</span> <span style="opacity:0.2;">/</span>
             <span style="color:var(--text-dim);">2.5 years in the trenches</span>
           </div>
-          <div style="font-size:1rem; color:var(--text); line-height:1.85;">
+          <div style="font-size:1rem; color:var(--text); line-height:1.85; overflow:visible;">
+            <div class="stats-showcase reveal" style="float:right; padding:0; margin:0 0 16px 24px; display:block; width:220px;">
+              <div style="position:relative;">
+                <div class="stats-showcase-inner" style="max-width:220px; cursor:zoom-in;" id="statsThumb">
+                  <img src="stats.png" alt="Trading bot leaderboard — 751x, 557x returns" loading="lazy">
+                </div>
+                <span style="position:absolute; top:0px; right:6px; color:var(--teal); font-family:'JetBrains Mono',monospace; font-size:1.8rem; font-weight:700; z-index:5; line-height:1;">*</span>
+              </div>
+            </div>
             <p style="margin-bottom:16px;">I'm a gamer, a nerd, and an autist with one goal: <strong style="color:var(--teal);">monetise being a sperg</strong>. Hyperfocusing 16 hours straight is a superpower when the thing is building trading infrastructure.</p>
-            <p style="margin-bottom:16px;">On the bleeding edge of AI &mdash; following every model drop, every capability unlock, every day. I already built <strong style="color:var(--teal);">4 successful CA-announcing bots</strong> &mdash; they worked despite being held together with free APIs and duct tape. Now I've got the real tools &mdash; paid infrastructure, direct blockchain access &mdash; and I can make this <strong style="color:var(--purple);">thousands of times more accurate</strong>.</p>
+            <p style="margin-bottom:16px;">On the bleeding edge of AI &mdash; following every model drop, every capability unlock, every day. I already built <strong style="color:var(--teal);">4 successful CA-announcing bots</strong><span style="color:var(--teal);">*</span> &mdash; they worked despite being held together with free APIs and duct tape. Now I've got the real tools &mdash; paid infrastructure, direct blockchain access &mdash; and I can make this <strong style="color:var(--purple);">thousands of times more accurate</strong>.</p>
             <p style="margin-bottom:16px;"><strong style="color:var(--teal);">Come help me make this ours. We can all eat.</strong></p>
+            <p style="font-family:'JetBrains Mono',monospace; font-size:0.7rem; color:var(--text-dim); opacity:0.75; line-height:1.6; margin-top:24px; margin-bottom:0;"><span style="color:var(--teal); font-weight:700;">*</span>&nbsp;Performance of a bot I built on a slow, free API (30+ seconds market delay, 95% of parameters missing). Imagine the potential with real-time data.</p>
           </div>
         </div>
         <!-- RIGHT: Friends pitch -->
@@ -2199,6 +2235,31 @@ footer p { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-s
         window.scrollTo({ top: y, behavior: 'smooth' });
       }
     });
+  });
+})();
+
+// Stats image hover preview
+(function() {
+  const thumb = document.getElementById('statsThumb');
+  if (!thumb) return;
+  const preview = document.createElement('div');
+  preview.style.cssText = 'position:fixed;pointer-events:none;z-index:9999;opacity:0;transition:opacity .15s ease;max-width:500px;border-radius:8px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,.6);';
+  const img = document.createElement('img');
+  img.src = 'stats.png';
+  img.style.cssText = 'width:100%;display:block;border-radius:8px;';
+  preview.appendChild(img);
+  document.body.appendChild(preview);
+
+  thumb.addEventListener('mouseenter', () => { preview.style.opacity = '1'; });
+  thumb.addEventListener('mouseleave', () => { preview.style.opacity = '0'; });
+  thumb.addEventListener('mousemove', (e) => {
+    let x = e.clientX + 20;
+    let y = e.clientY - 20;
+    if (x + 500 > window.innerWidth) x = e.clientX - 520;
+    if (y + preview.offsetHeight > window.innerHeight) y = window.innerHeight - preview.offsetHeight - 10;
+    if (y < 10) y = 10;
+    preview.style.left = x + 'px';
+    preview.style.top = y + 'px';
   });
 })();
 </script>
