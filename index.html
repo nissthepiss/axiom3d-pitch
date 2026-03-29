@@ -1343,8 +1343,8 @@ footer p { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-s
             <path d="M0,270 Q60,260 120,230 Q180,190 240,150 Q300,100 360,60 Q420,20 480,10 Q520,40 560,120 Q600,200 640,240 Q700,270 800,280"
               fill="none" stroke="#9945ff" stroke-width="2.5" filter="url(#glow-price)" stroke-linecap="round" stroke-linejoin="round"/>
 
-            <!-- Trailing stop loss line (follows price up, stays when price dumps) -->
-            <path d="M0,290 Q60,282 120,258 Q180,220 240,185 Q300,140 360,105 Q420,65 480,55 L560,55 L640,55 L800,55"
+            <!-- Trailing stop loss line (follows price up, holds flat) -->
+            <path d="M0,290 Q60,282 120,258 Q180,220 240,185 Q300,140 360,105 Q420,65 480,55 L560,55 L700,55"
               fill="none" stroke="#14f195" stroke-width="2" stroke-dasharray="8,4" stroke-linecap="round" opacity="0.9"/>
 
             <!-- SELL trigger point -->
@@ -1355,23 +1355,23 @@ footer p { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-s
             <circle cx="520" cy="55" r="4" fill="#14f195"/>
 
             <!-- Sell label -->
-            <rect x="530" y="32" width="120" height="24" rx="4" fill="rgba(20,241,149,0.15)" stroke="rgba(20,241,149,0.3)" stroke-width="1"/>
-            <text x="542" y="49" fill="#14f195" font-family="JetBrains Mono, monospace" font-size="11" font-weight="500">SOLD @ $480k</text>
+            <rect x="410" y="65" width="120" height="22" rx="4" fill="rgba(20,241,149,0.15)" stroke="rgba(20,241,149,0.3)" stroke-width="1"/>
+            <text x="422" y="80" fill="#14f195" font-family="JetBrains Mono, monospace" font-size="10" font-weight="500">SOLD @ $480k</text>
 
             <!-- Where manual trader sells (panic sell at bottom) -->
             <circle cx="660" cy="248" r="6" fill="none" stroke="#ff4466" stroke-width="2" opacity="0.6"/>
             <circle cx="660" cy="248" r="3" fill="#ff4466" opacity="0.6"/>
-            <rect x="600" y="255" width="155" height="24" rx="4" fill="rgba(255,68,102,0.1)" stroke="rgba(255,68,102,0.15)" stroke-width="1"/>
-            <text x="610" y="271" fill="#ff4466" font-family="JetBrains Mono, monospace" font-size="10" font-weight="500">manual panic sell @ $120k</text>
+            <rect x="540" y="255" width="115" height="20" rx="4" fill="rgba(255,68,102,0.1)" stroke="rgba(255,68,102,0.15)" stroke-width="1"/>
+            <text x="548" y="269" fill="#ff4466" font-family="JetBrains Mono, monospace" font-size="9" font-weight="500">panic sell @ $120k</text>
 
             <!-- Peak label -->
-            <text x="460" y="6" fill="#9945ff" font-family="JetBrains Mono, monospace" font-size="10" opacity="0.7">ATH $500k</text>
+            <text x="420" y="6" fill="#9945ff" font-family="JetBrains Mono, monospace" font-size="10" opacity="0.7">ATH $500k</text>
 
             <!-- Trailing stop label -->
-            <text x="640" y="48" fill="#14f195" font-family="JetBrains Mono, monospace" font-size="9" opacity="0.6">trailing stop held here</text>
+            <text x="580" y="48" fill="#14f195" font-family="JetBrains Mono, monospace" font-size="8" opacity="0.5">stop held here</text>
 
-            <!-- Dump zone label -->
-            <text x="580" y="180" fill="#ff4466" font-family="JetBrains Mono, monospace" font-size="11" opacity="0.4" transform="rotate(35 580 180)">DUMP -76%</text>
+            <!-- Dump zone label — horizontal, not rotated -->
+            <text x="600" y="170" fill="#ff4466" font-family="JetBrains Mono, monospace" font-size="10" opacity="0.3">-76%</text>
           </svg>
 
           <!-- X-axis -->
