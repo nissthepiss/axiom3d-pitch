@@ -227,33 +227,19 @@ h1, h2, h3, h4 { font-family: 'Syne', sans-serif; font-weight: 700; letter-spaci
 }
 .hero-badge .dot { width: 6px; height: 6px; background: var(--teal-bright); border-radius: 50%; animation: pulse 2s ease-in-out infinite; }
 .hero h1 {
-  font-weight: 800; line-height: 0.95; margin-bottom: 28px;
+  font-weight: 600; line-height: 1; margin-bottom: 28px;
   opacity: 0; animation: fadeUp 1s 0.5s cubic-bezier(0.16,1,0.3,1) forwards;
-  display: flex; align-items: baseline; justify-content: center; gap: 0;
-}
-.hero h1 .logo-mark {
-  display: inline-block; width: clamp(0.5rem, 1.5vw, 1rem); height: clamp(1.6rem, 5vw, 4rem);
-  background: linear-gradient(180deg, var(--teal-bright), var(--purple));
-  margin-right: clamp(0.3rem, 0.8vw, 0.6rem); border-radius: 2px;
-  transform: skewX(-8deg); opacity: 0.8; flex-shrink: 0;
+  display: inline-flex; align-items: baseline; justify-content: center; gap: 0;
+  font-size: clamp(2.2rem, 7vw, 5rem); letter-spacing: 0.25em;
+  position: relative;
 }
 .hero h1 .logo-axiom {
-  font-size: clamp(2rem, 9vw, 6rem); letter-spacing: -0.03em;
-  background: linear-gradient(135deg, #fff 0%, var(--purple) 50%, var(--teal) 100%);
-  background-size: 200% 200%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-  animation: titleGradient 8s ease-in-out infinite;
-  filter: drop-shadow(0 0 40px rgba(153,69,255,0.12));
+  color: var(--teal-bright);
+  text-shadow: 0 0 30px rgba(20,241,149,0.25), 0 0 60px rgba(20,241,149,0.1);
 }
 .hero h1 .logo-3d {
-  font-size: clamp(1.6rem, 7vw, 4.8rem); letter-spacing: 0.05em;
-  color: transparent; -webkit-text-stroke: 1.5px var(--teal-bright);
-  text-shadow:
-    1px 1px 0 rgba(153,69,255,0.3),
-    2px 2px 0 rgba(153,69,255,0.2),
-    3px 3px 0 rgba(153,69,255,0.1),
-    4px 4px 0 rgba(153,69,255,0.05);
-  position: relative; margin-left: -0.05em;
-  filter: drop-shadow(0 0 20px rgba(20,241,149,0.15));
+  color: var(--text-dim); font-weight: 400; letter-spacing: 0.25em;
+  margin-left: 0.15em;
 }
 @keyframes titleGradient { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
 .hero-tagline {
@@ -719,9 +705,7 @@ footer p { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-s
   .chain-note { padding: 16px 20px !important; font-size: 0.82rem !important; }
 }
 @media (max-width: 480px) {
-  .hero h1 .logo-axiom { font-size: clamp(1.8rem, 11vw, 3.5rem); }
-  .hero h1 .logo-3d { font-size: clamp(1.4rem, 8.5vw, 2.8rem); -webkit-text-stroke-width: 1px; text-shadow: 1px 1px 0 rgba(153,69,255,0.25), 2px 2px 0 rgba(153,69,255,0.12); }
-  .hero h1 .logo-mark { height: clamp(1.2rem, 4vw, 2.2rem); }
+  .hero h1 { font-size: clamp(1.6rem, 8vw, 3rem); letter-spacing: 0.2em; }
   .hero-tagline { font-size: 1rem !important; }
   .hero-sub { font-size: 0.9rem !important; }
   .friends-text { padding: 20px 16px !important; }
@@ -768,7 +752,7 @@ footer p { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-s
     <div class="parallax-orb orb-2" data-speed="0.05"></div>
     <div class="hero-inner">
       <div class="hero-badge"><span class="dot"></span> System Live &mdash; Collecting Now</div>
-      <h1><span class="logo-mark"></span><span class="logo-axiom">AXIOM</span><span class="logo-3d">3D</span></h1>
+      <h1><span class="logo-axiom">AXIOM</span><span class="logo-3d">3D</span></h1>
       <p class="hero-tagline">The Edge Nobody Else Has</p>
       <p class="hero-sub">Real-time Solana intelligence. Every trade. Every wallet. Every pattern.</p>
     </div>
