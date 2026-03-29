@@ -65,6 +65,28 @@ body {
 }
 
 .content { position: relative; z-index: 10; }
+.wide { max-width: 1340px; margin: 0 auto; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
+.compact-section { padding: 80px 24px; }
+.h-roadmap { display: flex; gap: 12px; margin-top: 40px; overflow-x: auto; padding-bottom: 8px; }
+.h-roadmap-node { flex: 1; min-width: 180px; padding: 20px; border-radius: 12px; background: var(--surface); border: 1px solid rgba(153,69,255,0.08); position: relative; }
+.h-roadmap-node::after { content: '\2192'; position: absolute; right: -18px; top: 50%; transform: translateY(-50%); color: var(--text-muted); font-size: 1.2rem; opacity: 0.3; }
+.h-roadmap-node:last-child::after { display: none; }
+.h-roadmap-node .stage-tag { margin-bottom: 6px; display: inline-block; }
+.h-roadmap-node h4 { font-size: 0.9rem; margin-bottom: 4px; }
+.h-roadmap-node p { font-size: 0.75rem; color: var(--text-muted); line-height: 1.5; }
+.built-strip { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; padding: 20px 0; margin-top: 32px; border-top: 1px solid rgba(153,69,255,0.08); border-bottom: 1px solid rgba(153,69,255,0.08); }
+.built-strip-item { text-align: center; }
+.built-strip-val { font-family: 'Syne', sans-serif; font-size: 1.5rem; font-weight: 800; background: var(--gradient-1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.built-strip-lbl { font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); }
+.ml-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 40px; }
+.ml-card { padding: 20px 24px; border-radius: 12px; background: var(--surface); border: 1px solid rgba(153,69,255,0.06); }
+.ml-card h4 { font-size: 0.95rem; margin-bottom: 8px; }
+.ml-card p { font-size: 0.82rem; color: var(--text-dim); line-height: 1.6; }
+.expansion-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 40px; }
+@media (max-width: 1100px) { .two-col { grid-template-columns: 1fr; } }
+@media (max-width: 900px) { .ml-grid { grid-template-columns: 1fr; } .expansion-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 640px) { .expansion-grid { grid-template-columns: 1fr; } .h-roadmap { flex-direction: column; } .h-roadmap-node::after { display: none; } }
 
 /* ====== SIDE NAV ====== */
 .side-nav {
@@ -165,7 +187,7 @@ body {
 
 @media (max-width: 900px) { .side-nav { display: none; } }
 section { position: relative; padding: 120px 24px; }
-.container { max-width: 1100px; margin: 0 auto; }
+.container { max-width: 1200px; margin: 0 auto; }
 
 /* ====== REVEAL ====== */
 .reveal {
@@ -619,20 +641,15 @@ footer p { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-s
 <!-- Side Nav (outside content for proper z-index stacking) -->
 <nav class="side-nav" id="sideNav">
   <a class="side-nav-item active" href="#hero"><span class="side-nav-label">Top</span><span class="side-nav-dot"></span></a>
-  <a class="side-nav-item" href="#about"><span class="side-nav-label">About</span><span class="side-nav-dot"></span></a>
-  <a class="side-nav-item" href="#simple"><span class="side-nav-label">The pitch</span><span class="side-nav-dot"></span></a>
+  <a class="side-nav-item" href="#about"><span class="side-nav-label">About + Pitch</span><span class="side-nav-dot"></span></a>
   <a class="side-nav-item" href="#sees"><span class="side-nav-label">What it sees</span><span class="side-nav-dot"></span></a>
   <a class="side-nav-item" href="#roadmap"><span class="side-nav-label">Roadmap</span><span class="side-nav-dot"></span></a>
-  <a class="side-nav-item" href="#money"><span class="side-nav-label">Revenue</span><span class="side-nav-dot"></span></a>
-  <a class="side-nav-item" href="#ml"><span class="side-nav-label">ML / AI</span><span class="side-nav-dot"></span></a>
+  <a class="side-nav-item" href="#ml"><span class="side-nav-label">AI / ML</span><span class="side-nav-dot"></span></a>
   <a class="side-nav-item" href="#speed"><span class="side-nav-label">Speed gap</span><span class="side-nav-dot"></span></a>
-  <a class="side-nav-item" href="#perps"><span class="side-nav-label">Perps</span><span class="side-nav-dot"></span></a>
-  <a class="side-nav-item" href="#chains"><span class="side-nav-label">Multi-chain</span><span class="side-nav-dot"></span></a>
-  <a class="side-nav-item" href="#markets"><span class="side-nav-label">Beyond crypto</span><span class="side-nav-dot"></span></a>
+  <a class="side-nav-item" href="#perps"><span class="side-nav-label">Expansion</span><span class="side-nav-dot"></span></a>
   <a class="side-nav-item" href="#meta"><span class="side-nav-label">Meta tracker</span><span class="side-nav-dot"></span></a>
   <a class="side-nav-item" href="#comps"><span class="side-nav-label">Acquisitions</span><span class="side-nav-dot"></span></a>
   <a class="side-nav-item" href="#mockups"><span class="side-nav-label">Mockups</span><span class="side-nav-dot"></span></a>
-  <a class="side-nav-item" href="#built"><span class="side-nav-label">What's built</span><span class="side-nav-dot"></span></a>
   <a class="side-nav-item" href="#cta"><span class="side-nav-label">Let's talk</span><span class="side-nav-dot"></span></a>
 </nav>
 
@@ -653,51 +670,42 @@ footer p { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-s
 
   <div class="section-divider"></div>
 
-  <!-- ====== ABOUT PAUL ====== -->
-  <section id="about" style="background: linear-gradient(180deg, var(--void) 0%, var(--deep) 100%);">
-    <div class="container" style="max-width:740px;">
-      <div class="reveal" style="text-align:center; margin-bottom:48px;">
-        <div style="font-family:'Syne',sans-serif; font-size:clamp(2.2rem,5vw,3.5rem); font-weight:800; color:var(--text); line-height:1.1; margin-bottom:8px;">
-          Hi, I'm <span style="background:var(--gradient-1); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">Paul</span>
+  <!-- ====== ABOUT + PITCH (merged) ====== -->
+  <section id="about" class="compact-section" style="background: linear-gradient(180deg, var(--void) 0%, var(--deep) 100%);">
+    <div class="wide">
+      <div class="two-col">
+        <!-- LEFT: Paul intro -->
+        <div class="reveal">
+          <div style="font-family:'Syne',sans-serif; font-size:clamp(2rem,4vw,3rem); font-weight:800; color:var(--text); line-height:1.1; margin-bottom:16px;">
+            Hi, I'm <span style="background:var(--gradient-1); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">Paul</span>
+          </div>
+          <div style="display:flex; flex-wrap:wrap; gap:6px; margin-bottom:24px;">
+            <span style="padding:4px 12px; border-radius:100px; font-family:'JetBrains Mono',monospace; font-size:0.65rem; letter-spacing:0.05em; background:rgba(0,212,170,0.08); border:1px solid rgba(0,212,170,0.15); color:var(--teal);">web designer</span>
+            <span style="padding:4px 12px; border-radius:100px; font-family:'JetBrains Mono',monospace; font-size:0.65rem; letter-spacing:0.05em; background:rgba(153,69,255,0.08); border:1px solid rgba(153,69,255,0.15); color:var(--purple);">programmer</span>
+            <span style="padding:4px 12px; border-radius:100px; font-family:'JetBrains Mono',monospace; font-size:0.65rem; letter-spacing:0.05em; background:rgba(0,212,170,0.08); border:1px solid rgba(0,212,170,0.15); color:var(--teal);">AI enthusiast</span>
+            <span style="padding:4px 12px; border-radius:100px; font-family:'JetBrains Mono',monospace; font-size:0.65rem; letter-spacing:0.05em; background:rgba(153,69,255,0.08); border:1px solid rgba(153,69,255,0.15); color:var(--purple);">gamer</span>
+            <span style="padding:4px 12px; border-radius:100px; font-family:'JetBrains Mono',monospace; font-size:0.65rem; letter-spacing:0.05em; background:rgba(0,212,170,0.08); border:1px solid rgba(0,212,170,0.15); color:var(--teal);">nerd</span>
+            <span style="padding:4px 12px; border-radius:100px; font-family:'JetBrains Mono',monospace; font-size:0.65rem; letter-spacing:0.05em; background:rgba(153,69,255,0.08); border:1px solid rgba(153,69,255,0.15); color:var(--purple);">sperg</span>
+            <span style="padding:4px 12px; border-radius:100px; font-family:'JetBrains Mono',monospace; font-size:0.65rem; letter-spacing:0.05em; background:rgba(0,212,170,0.08); border:1px solid rgba(0,212,170,0.15); color:var(--teal);">2.5 years in the trenches</span>
+          </div>
+          <div style="font-size:1rem; color:var(--text); line-height:1.85;">
+            <p style="margin-bottom:16px;">I'm a gamer, a nerd, and an autist with one goal: <strong style="color:var(--teal);">monetise being a sperg</strong>. Hyperfocusing 16 hours straight is a superpower when the thing is building trading infrastructure.</p>
+            <p style="margin-bottom:16px;">I already built <strong style="color:var(--teal);">4 successful CA-announcing bots</strong> &mdash; they worked despite being held together with free APIs and duct tape. Now I've got the real tools &mdash; paid infrastructure, direct blockchain access &mdash; and I can make this <strong style="color:var(--purple);">thousands of times more accurate</strong>.</p>
+            <p style="margin-bottom:0;"><strong style="color:var(--teal);">Come help me make this ours. We can all eat.</strong></p>
+          </div>
         </div>
-      </div>
-
-      <div class="reveal reveal-delay-1" style="display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin-bottom:36px;">
-        <span style="padding:5px 14px; border-radius:100px; font-family:'JetBrains Mono',monospace; font-size:0.7rem; letter-spacing:0.05em; background:rgba(0,212,170,0.08); border:1px solid rgba(0,212,170,0.15); color:var(--teal);">web designer</span>
-        <span style="padding:5px 14px; border-radius:100px; font-family:'JetBrains Mono',monospace; font-size:0.7rem; letter-spacing:0.05em; background:rgba(153,69,255,0.08); border:1px solid rgba(153,69,255,0.15); color:var(--purple);">programmer</span>
-        <span style="padding:5px 14px; border-radius:100px; font-family:'JetBrains Mono',monospace; font-size:0.7rem; letter-spacing:0.05em; background:rgba(0,212,170,0.08); border:1px solid rgba(0,212,170,0.15); color:var(--teal);">AI enthusiast</span>
-        <span style="padding:5px 14px; border-radius:100px; font-family:'JetBrains Mono',monospace; font-size:0.7rem; letter-spacing:0.05em; background:rgba(153,69,255,0.08); border:1px solid rgba(153,69,255,0.15); color:var(--purple);">gamer</span>
-        <span style="padding:5px 14px; border-radius:100px; font-family:'JetBrains Mono',monospace; font-size:0.7rem; letter-spacing:0.05em; background:rgba(0,212,170,0.08); border:1px solid rgba(0,212,170,0.15); color:var(--teal);">nerd</span>
-        <span style="padding:5px 14px; border-radius:100px; font-family:'JetBrains Mono',monospace; font-size:0.7rem; letter-spacing:0.05em; background:rgba(153,69,255,0.08); border:1px solid rgba(153,69,255,0.15); color:var(--purple);">sperg</span>
-        <span style="padding:5px 14px; border-radius:100px; font-family:'JetBrains Mono',monospace; font-size:0.7rem; letter-spacing:0.05em; background:rgba(0,212,170,0.08); border:1px solid rgba(0,212,170,0.15); color:var(--teal);">2.5 years in the trenches</span>
-      </div>
-
-      <div class="reveal reveal-delay-2" style="font-size:1.1rem; color:var(--text); line-height:1.9; text-align:center;">
-        <p style="margin-bottom:20px;">I'm a gamer, a nerd, and an autist with one goal: <strong style="color:var(--teal);">monetise being a sperg</strong>. Turns out hyperfocusing on one thing for 16 hours straight is a superpower when the thing is building trading infrastructure.</p>
-        <p style="margin-bottom:20px;">I've been on the bleeding edge of LLM AI since day one, building with every model the moment it drops, and trading memecoins since before most people knew what Solana was. Two and a half years in the trenches. Thousands of trades. Countless rugs survived.</p>
-        <p style="margin-bottom:20px;">I already built <strong style="color:var(--teal);">4 successful CA-announcing bots</strong> for hot coins &mdash; and they worked, people loved them, despite being held together with free APIs that gave me massive data latency and barely any data points to work with. Duct tape and willpower. Now I've got the real tools &mdash; paid infrastructure, direct blockchain access, premium data feeds &mdash; and I can make this <strong style="color:var(--purple);">thousands of times more accurate</strong>.</p>
-        <p style="margin-bottom:20px;">I'm obsessed with two things: <strong style="color:var(--teal);">coding</strong> and <strong style="color:var(--purple);">memecoins</strong>. This project is where they collide. It's my magnum opus &mdash; the thing I've been building toward without knowing it for years.</p>
-        <p style="margin-bottom:0;">But I don't want to build it alone. I want to build it with people who get it &mdash; who trade, who see the patterns, who have ideas they've never had the tools to test. <strong style="color:var(--teal);">Come help me make this ours. We can all eat.</strong></p>
-      </div>
-    </div>
-  </section>
-
-  <div class="section-divider"></div>
-
-  <!-- ====== FRIENDS PITCH ====== -->
-  <section class="friends" id="simple">
-    <div class="container friends-content">
-      <div class="reveal">
-        <div class="section-label">The simple version</div>
-        <h2 class="section-title">Okay, here's what I'm actually building</h2>
-      </div>
-      <div class="friends-text reveal reveal-delay-2">
-        <p>You know how we're all in the trenches every day, trying to figure out which coins are legit and which ones are about to rug? And how most of the time we're going off vibes, Telegram alpha, and hoping for the best?</p>
-        <p>I built something that watches <strong>every single trade happening on Solana</strong>. In real time. Every wallet, every buy, every sell, every coordinated sniper group &mdash; all of it, flowing through my system.</p>
-        <p>Think of it like this: imagine you could see <strong>everyone's hand at the poker table</strong>. You'd know who's bluffing, who has the nuts, and who's about to fold. That's what this does, but for Solana tokens.</p>
-        <p>Right now it's collecting data &mdash; building profiles on wallets, learning which patterns lead to a 10x and which patterns lead to zero. Soon it'll tell us: <em>"this coin looks like the ones that ran"</em> or <em>"these wallets just entered and they have an 80% win rate."</em></p>
-        <p>The endgame? A trading bot that actually knows what it's doing. But along the way, we get signals, daily digests, and tools that give us an edge every single day.</p>
-        <p class="sign-off">That's it. That's the project.</p>
+        <!-- RIGHT: Friends pitch -->
+        <div class="reveal reveal-delay-2" id="simple">
+          <div class="section-label">The simple version</div>
+          <h3 style="font-family:'Syne',sans-serif; font-size:1.4rem; font-weight:700; margin-bottom:20px;">Okay, here's what I'm actually building</h3>
+          <div class="friends-text" style="padding:32px;">
+            <p>You know how we're all in the trenches, trying to figure out which coins are legit and which ones are about to rug? Going off vibes, Telegram alpha, hoping for the best?</p>
+            <p>I built something that watches <strong>every single trade on Solana</strong>. In real time. Every wallet, every buy, every sell, every coordinated sniper group.</p>
+            <p>Think of it like seeing <strong>everyone's hand at the poker table</strong>. You'd know who's bluffing, who has the nuts, who's about to fold. That's this, but for tokens.</p>
+            <p>Soon it'll tell us: <em>"this coin looks like the ones that ran"</em> or <em>"these wallets just entered and they have an 80% win rate."</em></p>
+            <p class="sign-off">That's it. That's the project.</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -705,8 +713,8 @@ footer p { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-s
   <div class="section-divider"></div>
 
   <!-- ====== WHAT IT SEES ====== -->
-  <section class="sees" id="sees">
-    <div class="container">
+  <section class="sees compact-section" id="sees">
+    <div class="wide">
       <div class="reveal">
         <div class="section-label">What it sees</div>
         <h2 class="section-title">The full picture, in real time</h2>
@@ -743,78 +751,80 @@ footer p { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-s
           <div class="stat-desc">What early signs predict a 10x versus going to zero. The data tells us.</div>
         </div>
       </div>
+      <!-- Built strip (merged from What's Built section) -->
+      <div class="built-strip reveal">
+        <div class="built-strip-item"><div class="built-strip-val">14,000</div><div class="built-strip-lbl">Lines of Rust</div></div>
+        <div class="built-strip-item"><div class="built-strip-val">272</div><div class="built-strip-lbl">Tests</div></div>
+        <div class="built-strip-item"><div class="built-strip-val">8+</div><div class="built-strip-lbl">API Integrations</div></div>
+        <div class="built-strip-item"><div class="built-strip-val">5,000+</div><div class="built-strip-lbl">TPS single machine</div></div>
+        <div style="text-align:center; width:100%; margin-top:8px;"><span style="font-family:'JetBrains Mono',monospace; font-size:0.7rem; color:var(--teal);">Not a prototype &bull; Production-grade &bull; Running &amp; collecting data TODAY</span></div>
+      </div>
     </div>
   </section>
 
   <div class="section-divider"></div>
 
-  <!-- ====== ROADMAP ====== -->
-  <section class="roadmap" id="roadmap">
-    <div class="container">
+  <!-- ====== ROADMAP + REVENUE (merged) ====== -->
+  <section class="compact-section" id="roadmap" style="background: linear-gradient(180deg, var(--void) 0%, var(--deep) 50%, var(--void) 100%);">
+    <div class="wide">
       <div class="parallax-orb orb-3" data-speed="0.02"></div>
       <div class="reveal">
-        <div class="section-label">The roadmap</div>
+        <div class="section-label">Roadmap &amp; revenue</div>
         <h2 class="section-title">Main quest + side quests</h2>
       </div>
-      <div class="roadmap-track">
-        <div class="roadmap-node reveal">
-          <div class="roadmap-dot active"></div>
-          <div class="roadmap-stage"><span class="stage-tag now">Live now</span></div>
-          <h3 class="roadmap-title">Data Collection</h3>
-          <p class="roadmap-desc">The system is live, watching everything, building an irreplaceable dataset. Every day of collection is a day <span class="highlight">no one can catch up</span>.</p>
-        </div>
-        <div class="roadmap-node reveal">
-          <div class="roadmap-dot"></div>
-          <div class="roadmap-stage"><span class="stage-tag next">Next</span></div>
-          <h3 class="roadmap-title">Signals & Personal Edge</h3>
-          <p class="roadmap-desc">Trading signals for our inner circle. Telegram and Discord bot. The terminal becomes a real trading interface &mdash; watch, filter, act.</p>
-        </div>
-        <div class="roadmap-node reveal">
-          <div class="roadmap-dot side"></div>
-          <div class="roadmap-stage"><span class="stage-tag side">Side quest</span></div>
-          <h3 class="roadmap-title">"Day in the Trenches"</h3>
-          <p class="roadmap-desc">A paid daily digest for Solana traders. <span class="highlight">What ran today? What rugged? Top wallets? Best coin?</span> Free preview, full stats behind paywall.</p>
-        </div>
-        <div class="roadmap-node reveal">
-          <div class="roadmap-dot side"></div>
-          <div class="roadmap-stage"><span class="stage-tag side">Side quest</span></div>
-          <h3 class="roadmap-title">Chrome Extension Overlay</h3>
-          <p class="roadmap-desc">Analytics overlaid on axiom.trade. Wallet scores, manipulation flags, <span class="highlight">trailing stop loss</span>. API for third parties.</p>
-        </div>
-        <div class="roadmap-node reveal">
-          <div class="roadmap-dot active"></div>
-          <div class="roadmap-stage"><span class="stage-tag main">Main quest</span></div>
-          <h3 class="roadmap-title">The Bot</h3>
-          <p class="roadmap-desc">Built on the most complete dataset of Solana token behavior ever assembled. <span class="highlight">Not vibes. Not hope. Data.</span></p>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <div class="section-divider"></div>
+      <!-- Horizontal roadmap -->
+      <div class="h-roadmap reveal">
+        <div class="h-roadmap-node" style="border-left:3px solid var(--teal-bright);">
+          <span class="stage-tag now">Live now</span>
+          <h4>Data Collection</h4>
+          <p>System live, building irreplaceable dataset. Every day = a day no one can catch up.</p>
+        </div>
+        <div class="h-roadmap-node" style="border-left:3px solid var(--purple);">
+          <span class="stage-tag next">Next</span>
+          <h4>Signals &amp; Edge</h4>
+          <p>Telegram/Discord signal bot. TUI becomes real trading terminal. Chrome extension catches coins.</p>
+        </div>
+        <div class="h-roadmap-node" style="border-left:3px solid var(--purple-dim);">
+          <span class="stage-tag side">Side quest</span>
+          <h4>"Day in the Trenches"</h4>
+          <p>Paid daily digest. What ran? What rugged? Top wallets? Free preview, paywall for full stats.</p>
+        </div>
+        <div class="h-roadmap-node" style="border-left:3px solid var(--purple-dim);">
+          <span class="stage-tag side">Side quest</span>
+          <h4>Chrome Overlay</h4>
+          <p>Analytics on axiom.trade. Wallet scores, manipulation flags, trailing stop loss. API for third parties.</p>
+        </div>
+        <div class="h-roadmap-node" style="border-left:3px solid var(--teal-bright);">
+          <span class="stage-tag main">Main quest</span>
+          <h4>The Bot</h4>
+          <p>Built on the most complete Solana dataset ever assembled. Not vibes. Not hope. Data.</p>
+        </div>
+      </div>
 
-  <!-- ====== MONEY AT EVERY STAGE ====== -->
-  <section class="money" id="money">
-    <div class="container">
-      <div class="reveal">
-        <div class="section-label">Revenue path</div>
-        <h2 class="section-title">Money at every stage</h2>
-        <p class="section-sub">These timelines aren't optimistic projections &mdash; they're based on actual velocity. This entire 14,000-line production system was built solo in weeks, not months. When you're obsessed and coding is the thing that lights you up, timelines compress fast.</p>
+      <!-- Money timeline (compact) -->
+      <div id="money" style="margin-top:48px;">
+        <div class="two-col" style="gap:32px; align-items:center;">
+          <div class="reveal">
+            <div class="money-grid" style="margin-top:0;">
+              <div class="money-row"><div class="money-time">Now</div><div class="money-what">Building irreplaceable dataset</div></div>
+              <div class="money-row"><div class="money-time">~1 mo</div><div class="money-what">Signals for us &amp; friends = profit</div></div>
+              <div class="money-row"><div class="money-time">~2 mo</div><div class="money-what">Subscriptions from trenchers</div></div>
+              <div class="money-row"><div class="money-time">~3 mo</div><div class="money-what">Chrome extension at scale</div></div>
+              <div class="money-row"><div class="money-time">~4 mo</div><div class="money-what">Automated trading bot</div></div>
+              <div class="money-row"><div class="money-time">Ongoing</div><div class="money-what">API &amp; data licensing</div></div>
+            </div>
+          </div>
+          <div class="reveal reveal-delay-2" style="text-align:center;">
+            <div class="money-quote" style="border:none; padding:0;">
+              <span>The side quests fund the main quest.<br>The main quest makes the side quests better.</span>
+            </div>
+            <p style="margin-top:20px; font-size:0.9rem; color:var(--text-dim);">
+              Built solo in weeks, not months. <strong style="color:var(--teal);">Bring the ideas. The code follows fast.</strong>
+            </p>
+          </div>
+        </div>
       </div>
-      <div class="money-grid">
-        <div class="money-row reveal reveal-delay-1"><div class="money-time">Now</div><div class="money-what">Building an irreplaceable dataset</div></div>
-        <div class="money-row reveal reveal-delay-2"><div class="money-time">~1 month</div><div class="money-what">Trading signals for us &amp; friends = direct profit</div></div>
-        <div class="money-row reveal reveal-delay-3"><div class="money-time">~2 months</div><div class="money-what">Subscriptions from trenchers</div></div>
-        <div class="money-row reveal reveal-delay-4"><div class="money-time">~3 months</div><div class="money-what">Chrome extension at scale</div></div>
-        <div class="money-row reveal reveal-delay-5"><div class="money-time">~4 months</div><div class="money-what">Automated trading bot</div></div>
-        <div class="money-row reveal reveal-delay-6"><div class="money-time">Ongoing</div><div class="money-what">API &amp; data licensing &mdash; passive income</div></div>
-      </div>
-      <div class="money-quote reveal">
-        <span>The side quests fund the main quest.<br>The main quest makes the side quests better.</span>
-      </div>
-      <p style="text-align:center; margin-top:24px; font-size:0.95rem; color:var(--text-dim); max-width:600px; margin-left:auto; margin-right:auto;" class="reveal reveal-delay-3">
-        Execution is handled. What's needed is <strong style="color:var(--teal);">direction</strong> &mdash; which signal matters most, which feature ships first, which strategy to test. <strong style="color:var(--teal);">Bring the ideas. The code follows fast.</strong>
-      </p>
     </div>
   </section>
 
@@ -829,43 +839,25 @@ footer p { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-s
         <p class="section-sub">Every trade we collect is a labeled training example. Tokens that 10x'd, tokens that rugged, wallets that won, wallets that lost. After months of collection, we have something no ML team can buy: <strong style="color:var(--teal)">ground truth at scale</strong>. And we're not locked to one model &mdash; we run <strong style="color:var(--purple)">GPT, Claude, Gemini, and Grok in parallel</strong>, each with different strengths: Twitter/X access, reasoning depth, speed, cost efficiency. Full-spectrum AI analysis on every coin.</p>
       </div>
 
-      <div class="ml-flow reveal reveal-delay-2">
-        <div class="ml-step">
-          <div class="ml-step-line"><div class="ml-step-dot"></div><div class="ml-step-connector"></div></div>
-          <div class="ml-step-content">
-            <div class="ml-step-title">Pattern Recognition Model</div>
-            <div class="ml-step-desc">Train on thousands of token lifecycles. The model sees the <span class="hl">first 10 trades</span> of a new token and says: <em>"This looks 84% like tokens that ran to $2M+"</em> or <em>"This signature matches known rug patterns."</em> It learns what humans can't see &mdash; subtle correlations across 50+ features simultaneously.</div>
-          </div>
+      <div class="ml-grid reveal reveal-delay-2">
+        <div class="ml-card" style="border-left:3px solid var(--purple);">
+          <h4 style="color:var(--purple);">Pattern Recognition</h4>
+          <p>Trained on thousands of token lifecycles. Sees the <span class="hl">first 10 trades</span> and says: <em>"84% match to $2M+ runners"</em>. Spots correlations across 50+ features simultaneously.</p>
         </div>
-        <div class="ml-step">
-          <div class="ml-step-line"><div class="ml-step-dot teal"></div><div class="ml-step-connector"></div></div>
-          <div class="ml-step-content">
-            <div class="ml-step-title">Smart Entry Detection</div>
-            <div class="ml-step-desc">Big news drops. A new coin appears. The model sees: <span class="hl">5 wallets with 75%+ win rates just bought</span>, viewer count spiking, buy pressure accelerating, signature matches previous runners. Confidence: high. Risk:reward ratio computed in real time. <span class="hl">The bot enters before the crowd even notices.</span></div>
-          </div>
+        <div class="ml-card" style="border-left:3px solid var(--teal);">
+          <h4 style="color:var(--teal);">Smart Entry Detection</h4>
+          <p>News drops, coin appears, <span class="hl">5 wallets with 75%+ WR bought</span>, viewers spiking, signature matches runners. <span class="hl">Bot enters before the crowd notices.</span></p>
         </div>
-        <div class="ml-step">
-          <div class="ml-step-line"><div class="ml-step-dot gold"></div><div class="ml-step-connector"></div></div>
-          <div class="ml-step-content">
-            <div class="ml-step-title">Risk Management & R:R Engine</div>
-            <div class="ml-step-desc">This is where it gets serious. The model doesn't just find entries &mdash; it <span class="hl-g">manages risk</span>. Position sizing based on confidence score. Dynamic stop losses based on token volatility profile. Automatic profit-taking at statistically optimal points. <span class="hl-g">Expected R:R computed for every trade before entry.</span> No gambling. Math.</div>
-          </div>
+        <div class="ml-card" style="border-left:3px solid var(--gold);">
+          <h4 style="color:var(--gold);">Risk &amp; R:R Engine</h4>
+          <p>Position sizing by confidence. Dynamic stop losses by volatility. Automatic profit-taking at optimal points. <span class="hl-g">R:R computed before every entry.</span> No gambling. Math.</p>
         </div>
-        <div class="ml-step">
-          <div class="ml-step-line"><div class="ml-step-dot"></div><div class="ml-step-connector"></div></div>
-          <div class="ml-step-content">
-            <div class="ml-step-title">Perpetuals Expansion</div>
-            <div class="ml-step-desc">Same intelligence, applied to <span class="hl-p">perps</span>. Funding rate arbitrage detection. Liquidation cascade prediction. Long/short signals based on wallet flow analysis. The spot data informs the perps strategy &mdash; we see the smart money move on spot <em>before</em> it shows up in perps pricing.</div>
-          </div>
-        </div>
-        <div class="ml-step">
-          <div class="ml-step-line"><div class="ml-step-dot teal"></div></div>
-          <div class="ml-step-content">
-            <div class="ml-step-title">Continuous Learning</div>
-            <div class="ml-step-desc">The model improves every day. Every trade outcome is new training data. Market regimes shift &mdash; the model adapts. <span class="hl">What worked last month gets validated or deprecated automatically.</span> The longer it runs, the sharper it gets. Compounding intelligence.</div>
-          </div>
+        <div class="ml-card" style="border-left:3px solid var(--purple);">
+          <h4 style="color:var(--purple);">Perps Expansion</h4>
+          <p>Same intelligence on <span class="hl-p">perps</span>. Funding rate arb, liquidation cascade detection. Spot data leads perps &mdash; we see smart money move <em>before</em> perps price.</p>
         </div>
       </div>
+      <p class="reveal" style="text-align:center; margin-top:20px; font-size:0.85rem; color:var(--text-muted);">The model improves daily. Every trade outcome = new training data. Market regimes shift &mdash; <span class="hl">the model adapts automatically.</span> Compounding intelligence.</p>
     </div>
   </section>
 
@@ -873,7 +865,7 @@ footer p { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-s
 
   <!-- ====== SPEED COMPARISON ====== -->
   <section class="speed-section" id="speed" style="background: linear-gradient(180deg, var(--void), var(--deep));">
-    <div class="container">
+    <div class="wide">
       <div class="reveal">
         <div class="section-label">The speed gap</div>
         <h2 class="section-title">Manual trader vs. Axiom3d</h2>
@@ -1331,13 +1323,13 @@ footer p { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-s
 
   <div class="section-divider"></div>
 
-  <!-- ====== PERPS ====== -->
-  <section id="perps" style="background: linear-gradient(180deg, var(--void) 0%, var(--deep) 50%, var(--void) 100%);">
-    <div class="container">
+  <!-- ====== EXPANSION (Perps + Chains + Markets merged) ====== -->
+  <section id="perps" class="compact-section" style="background: linear-gradient(180deg, var(--void) 0%, var(--deep) 50%, var(--void) 100%);">
+    <div class="wide">
       <div class="reveal">
-        <div class="section-label">Perpetuals</div>
-        <h2 class="section-title">The same edge, with leverage</h2>
-        <p class="section-sub">Everything we know about spot markets becomes exponentially more powerful when applied to perps. Our data doesn't just find entries &mdash; it finds <strong style="color:var(--teal);">leveraged entries with conviction</strong>.</p>
+        <div class="section-label">Expansion</div>
+        <h2 class="section-title">Beyond Solana spot. Beyond crypto.</h2>
+        <p class="section-sub">The architecture is chain-agnostic and market-agnostic. Same pipeline works everywhere: firehose &rarr; parse &rarr; classify &rarr; profile &rarr; signal.</p>
       </div>
 
       <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-top:56px;">
@@ -1413,82 +1405,57 @@ footer p { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-s
         </div>
       </div>
 
-      <p class="reveal reveal-delay-4" style="text-align:center; margin-top:28px; font-size:0.95rem; color:var(--text-dim); max-width:620px; margin-left:auto; margin-right:auto;">
-        The key insight: <strong style="color:var(--teal);">spot data is the leading indicator for perps</strong>. We see smart money accumulate on spot <em>before</em> it shows up in perps pricing. That timing gap, combined with leverage, is where serious money is made.
+      <p class="reveal reveal-delay-4" style="text-align:center; margin-top:28px; font-size:0.85rem; color:var(--text-muted); max-width:560px; margin-left:auto; margin-right:auto;">
+        <strong style="color:var(--teal);">Spot data is the leading indicator for perps.</strong> We see smart money move on spot <em>before</em> it shows in perps pricing. That timing gap + leverage = serious money.
       </p>
-    </div>
-  </section>
 
-  <div class="section-divider"></div>
-
-  <!-- ====== MULTI-CHAIN ====== -->
-  <section class="multichain" id="chains" style="background: var(--void);">
-    <div class="container">
-      <div class="reveal">
-        <div class="section-label">Multi-chain</div>
-        <h2 class="section-title">One architecture, every chain</h2>
-        <p class="section-sub">The engine is chain-agnostic by design. Swap the ingestion layer, keep everything else. Each chain unlocks a different trading style.</p>
-      </div>
-
-      <div class="chain-grid">
-        <div class="chain-card reveal reveal-delay-1">
-          <span class="chain-icon">&#9898;</span>
+      <!-- Chain + Market expansion cards -->
+      <div id="chains" class="expansion-grid reveal" style="margin-top:48px;">
+        <div class="chain-card" style="border-radius:12px; border:1px solid rgba(153,69,255,0.08); text-align:left; padding:24px;">
+          <span class="chain-icon" style="font-size:1.4rem;">&#9898;</span>
           <div class="chain-name">Solana</div>
-          <div class="chain-desc">Live now. Memecoins, low caps, high volatility. Speed is everything.</div>
+          <div class="chain-desc">Live now. Memecoins, speed is everything.</div>
         </div>
-        <div class="chain-card reveal reveal-delay-2">
-          <span class="chain-icon">&#x1F535;</span>
+        <div class="chain-card" style="border-radius:12px; border:1px solid rgba(153,69,255,0.08); text-align:left; padding:24px;">
+          <span class="chain-icon" style="font-size:1.4rem;">&#x1F535;</span>
           <div class="chain-name">Base</div>
-          <div class="chain-desc">Slower-moving coins backed by real communities. Size in early for safe 2-3x plays.</div>
+          <div class="chain-desc">Community coins. Safe 2-3x sizing plays.</div>
         </div>
-        <div class="chain-card reveal reveal-delay-3">
-          <span class="chain-icon">&#x1F7E3;</span>
+        <div class="chain-card" style="border-radius:12px; border:1px solid rgba(153,69,255,0.08); text-align:left; padding:24px;">
+          <span class="chain-icon" style="font-size:1.4rem;">&#x1F7E3;</span>
           <div class="chain-name">Ethereum</div>
-          <div class="chain-desc">High-cap tokens, DeFi protocols. Institutional flow analysis. Whale watching at scale.</div>
+          <div class="chain-desc">DeFi, whale watching, institutional flow.</div>
         </div>
-        <div class="chain-card reveal reveal-delay-4">
-          <span class="chain-icon">&#x1F7E1;</span>
+        <div class="chain-card" style="border-radius:12px; border:1px solid rgba(153,69,255,0.08); text-align:left; padding:24px;">
+          <span class="chain-icon" style="font-size:1.4rem;">&#x1F7E1;</span>
           <div class="chain-name">BSC</div>
-          <div class="chain-desc">Community-driven coins, news plays. AI-powered narrative detection for free money entries.</div>
+          <div class="chain-desc">News plays, AI narrative detection.</div>
         </div>
       </div>
 
-      <div class="chain-note reveal reveal-delay-5">
-        <strong>The play on Base/ETH/BSC is different from Solana.</strong> These chains produce slower-moving high caps that are usually community or news-driven. When big news hits, a coin appears, and our system sees it trending across social + smart wallets accumulating &mdash; that's a free 2-3x you can size into with confidence. AI analyzes the narrative, the model scores the setup, and you're in before the CT hype cycle even starts. Same data engine, different tempo, same edge.
-      </div>
-    </div>
-  </section>
-
-  <div class="section-divider"></div>
-
-  <!-- ====== BEYOND CRYPTO ====== -->
-  <section class="markets" id="markets">
-    <div class="container">
-      <div class="reveal">
-        <div class="section-label">Beyond crypto</div>
-        <h2 class="section-title">The architecture translates to anything</h2>
-        <p class="section-sub">If you can build a real-time analytics engine that handles 5,000+ TPS on Solana, you can point it at any market on earth. Same pipeline: firehose &rarr; parse &rarr; classify &rarr; profile &rarr; signal.</p>
-      </div>
-
-      <div class="market-cards">
-        <div class="market-card reveal reveal-delay-1">
+      <div id="markets" class="market-cards reveal" style="margin-top:20px;">
+        <div class="market-card">
           <span class="market-icon">&#x1F4C8;</span>
           <h3>Traditional Markets</h3>
-          <p>NYSE, NASDAQ tick data. Wallet profiling becomes <strong style="color:var(--teal)">institutional flow analysis</strong>. Dark pool detection, block trades, systematic accumulation. Hedge funds pay $50k+/month for this.</p>
+          <p>NYSE/NASDAQ tick data &rarr; <strong style="color:var(--teal)">institutional flow analysis</strong>. Dark pool detection. Hedge funds pay $50k+/mo for this.</p>
           <span class="market-tag">Equities &bull; Options &bull; ETFs</span>
         </div>
-        <div class="market-card reveal reveal-delay-2">
+        <div class="market-card">
           <span class="market-icon">&#x1F4B1;</span>
-          <h3>Forex & Commodities</h3>
-          <p>Highest volume market on earth. Velocity and momentum signals translate to <strong style="color:var(--teal)">order flow analysis</strong>. Central bank intervention detection. Carry trade unwinding signals.</p>
+          <h3>Forex &amp; Commodities</h3>
+          <p>Velocity signals &rarr; <strong style="color:var(--teal)">order flow analysis</strong>. Central bank intervention detection. Carry trade unwinding.</p>
           <span class="market-tag">FX &bull; Metals &bull; Energy</span>
         </div>
-        <div class="market-card reveal reveal-delay-3">
+        <div class="market-card">
           <span class="market-icon">&#x1F3B2;</span>
-          <h3>Polymarket & Prediction</h3>
-          <p><strong style="color:var(--teal)">Arbitrage bots</strong> across prediction markets. Real-time odds tracking. Esports live-betting flow analysis. When one market moves, we see the ripple before others react.</p>
+          <h3>Polymarket &amp; Prediction</h3>
+          <p><strong style="color:var(--teal)">Arbitrage bots</strong> across prediction markets. Esports live-betting. When one market moves, we see it first.</p>
           <span class="market-tag">Arbitrage &bull; Esports &bull; Events</span>
         </div>
+      </div>
+
+      <div class="chain-note reveal" style="margin-top:20px;">
+        <strong>Base/ETH/BSC = different tempo, same edge.</strong> Slower high caps, community/news-driven. AI analyzes the narrative, scores the setup, you're in before CT hype starts. Free 2-3x with confidence.
       </div>
     </div>
   </section>
@@ -1895,25 +1862,6 @@ footer p { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-s
         </div>
 
       </div>
-    </div>
-  </section>
-
-  <div class="section-divider"></div>
-
-  <!-- ====== WHAT'S BUILT ====== -->
-  <section class="built" id="built" style="background: var(--void);">
-    <div class="container">
-      <div class="reveal">
-        <div class="section-label">Already built</div>
-        <h2 class="section-title">This isn't a pitch deck. It's running.</h2>
-      </div>
-      <div class="built-stats">
-        <div class="built-stat reveal reveal-delay-1"><div class="built-val">14,000</div><div class="built-label">Lines of Rust</div></div>
-        <div class="built-stat reveal reveal-delay-2"><div class="built-val">272</div><div class="built-label">Tests</div></div>
-        <div class="built-stat reveal reveal-delay-3"><div class="built-val">8+</div><div class="built-label">API Integrations</div></div>
-        <div class="built-stat reveal reveal-delay-4"><div class="built-val">5,000+</div><div class="built-label">TPS on one machine</div></div>
-      </div>
-      <p class="built-note reveal reveal-delay-5"><strong>Not a prototype.</strong> Production-grade infrastructure, collecting real data, today.</p>
     </div>
   </section>
 
