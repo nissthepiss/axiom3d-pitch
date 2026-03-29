@@ -215,54 +215,78 @@ h1, h2, h3, h4 { font-family: 'Syne', sans-serif; font-weight: 700; letter-spaci
 .section-sub { font-size: 1.05rem; color: var(--text-dim); max-width: 640px; line-height: 1.8; }
 
 /* ====== HERO ====== */
-.hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 40px 24px; }
+.hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 40px 24px; position: relative; }
 .hero-inner { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; }
-.hero-badge {
-  display: inline-flex; align-items: center; gap: 8px; padding: 6px 16px;
-  border: 1px solid rgba(153,69,255,0.3); border-radius: 100px;
-  font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 0.15em;
-  text-transform: uppercase; color: var(--purple); margin-bottom: 40px;
-  backdrop-filter: blur(8px); background: rgba(153,69,255,0.05);
-  opacity: 0; animation: fadeUp 1s 0.3s cubic-bezier(0.16,1,0.3,1) forwards;
-}
-.hero-badge .dot { width: 6px; height: 6px; background: var(--teal-bright); border-radius: 50%; animation: pulse 2s ease-in-out infinite; }
+
 .hero h1 {
-  display: inline-flex; align-items: center; justify-content: center; gap: 12px;
-  margin-bottom: 28px; opacity: 0;
-  animation: fadeUp 1s 0.5s cubic-bezier(0.16,1,0.3,1) forwards;
+  display: inline-flex; align-items: center; justify-content: center; gap: 14px;
+  margin-bottom: 32px; opacity: 0;
+  animation: fadeUp 1s 0.3s cubic-bezier(0.16,1,0.3,1) forwards;
 }
-.hero-cube { width: 36px; height: 36px; flex-shrink: 0; }
+.hero-cube { width: 38px; height: 38px; flex-shrink: 0; }
 .hero-axiom {
-  font-family: Rajdhani, sans-serif; font-size: 2.2rem; font-weight: 600;
-  color: var(--text); letter-spacing: 0.08em; line-height: 1;
+  font-family: Rajdhani, sans-serif; font-size: 2.4rem; font-weight: 600;
+  color: var(--text); letter-spacing: 0.1em; line-height: 1;
 }
 .hero-3d {
-  font-family: Rajdhani, sans-serif; font-size: 2.2rem; font-weight: 300;
-  letter-spacing: 0.08em; line-height: 1;
+  font-family: Rajdhani, sans-serif; font-size: 2.4rem; font-weight: 300;
+  letter-spacing: 0.1em; line-height: 1;
   background: linear-gradient(180deg, var(--teal), var(--purple));
   -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
 }
 @keyframes cubeShift { 0%,100%{ stroke: #14f195; } 50%{ stroke: #9945ff; } }
-@keyframes titleGradient { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
-.hero-tagline {
-  font-family: 'Syne', sans-serif; font-size: clamp(1.1rem, 2.5vw, 1.6rem); font-weight: 600;
-  color: var(--text); margin-bottom: 16px; opacity: 0; animation: fadeUp 1s 0.7s cubic-bezier(0.16,1,0.3,1) forwards;
+
+/* Accent line under logo */
+.hero-accent {
+  width: 48px; height: 2px; border-radius: 1px; margin-bottom: 32px;
+  background: linear-gradient(90deg, var(--teal), var(--purple));
+  opacity: 0; animation: fadeUp 0.8s 0.5s cubic-bezier(0.16,1,0.3,1) forwards;
 }
+
+/* Main headline — the killer line */
+.hero-headline {
+  font-family: 'Syne', sans-serif; font-weight: 700;
+  font-size: clamp(1.8rem, 5vw, 3.2rem); line-height: 1.15;
+  color: var(--text); margin-bottom: 20px; max-width: 600px;
+  opacity: 0; animation: fadeUp 1s 0.6s cubic-bezier(0.16,1,0.3,1) forwards;
+}
+.hero-headline .hl-teal { color: var(--teal-bright); }
+
+/* Sub text */
 .hero-sub {
-  font-size: clamp(0.95rem, 1.5vw, 1.1rem); color: var(--text-dim); max-width: 520px; margin: 0 auto;
-  opacity: 0; animation: fadeUp 1s 0.9s cubic-bezier(0.16,1,0.3,1) forwards;
+  font-family: 'DM Sans', sans-serif;
+  font-size: clamp(0.9rem, 1.4vw, 1.05rem); color: var(--text-dim);
+  max-width: 480px; margin: 0 auto 28px; line-height: 1.7;
+  opacity: 0; animation: fadeUp 1s 0.8s cubic-bezier(0.16,1,0.3,1) forwards;
 }
+
+/* Live stat pulse */
+.hero-stat {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: 'JetBrains Mono', monospace; font-size: 0.68rem;
+  letter-spacing: 0.08em; color: var(--text-muted);
+  opacity: 0; animation: fadeUp 0.8s 1s cubic-bezier(0.16,1,0.3,1) forwards;
+}
+.hero-stat-dot {
+  width: 5px; height: 5px; border-radius: 50%; background: var(--teal-bright);
+  animation: pulse 2.5s ease-in-out infinite;
+}
+.hero-stat-val { color: var(--teal); }
+
+/* Scroll indicator */
 .hero-scroll {
-  position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
-  display: flex; flex-direction: column; align-items: center; gap: 8px;
-  color: var(--text-muted); font-family: 'JetBrains Mono', monospace;
-  font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
-  opacity: 0; animation: fadeUp 1s 1.4s cubic-bezier(0.16,1,0.3,1) forwards;
+  position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  opacity: 0; animation: fadeUp 0.6s 1.4s cubic-bezier(0.16,1,0.3,1) forwards;
 }
-.scroll-line { width: 1px; height: 40px; background: linear-gradient(to bottom, var(--purple-dim), transparent); animation: scrollPulse 2s ease-in-out infinite; }
-@keyframes scrollPulse { 0%, 100% { opacity: 0.3; transform: scaleY(1); } 50% { opacity: 1; transform: scaleY(1.2); } }
-@keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-@keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(0.7); } }
+.scroll-line {
+  width: 1px; height: 28px;
+  background: linear-gradient(to bottom, rgba(153,69,255,0.3), transparent);
+  animation: scrollPulse 2.5s ease-in-out infinite;
+}
+@keyframes scrollPulse { 0%, 100% { opacity: 0.2; } 50% { opacity: 0.6; } }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(0.6); } }
 
 .section-divider {
   width: 100%; height: 1px;
@@ -710,6 +734,8 @@ footer p { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-s
   .hero h1 { gap: 8px; }
   .hero-cube { width: 26px; height: 26px; }
   .hero-axiom, .hero-3d { font-size: 1.6rem; }
+  .hero-headline { font-size: 1.4rem !important; }
+  .hero-accent { width: 36px; margin-bottom: 24px; }
   .hero-tagline { font-size: 1rem !important; }
   .hero-sub { font-size: 0.9rem !important; }
   .friends-text { padding: 20px 16px !important; }
@@ -755,7 +781,6 @@ footer p { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-s
     <div class="parallax-orb orb-1" data-speed="0.03"></div>
     <div class="parallax-orb orb-2" data-speed="0.05"></div>
     <div class="hero-inner">
-      <div class="hero-badge"><span class="dot"></span> System Live &mdash; Collecting Now</div>
       <h1>
         <svg class="hero-cube" viewBox="0 0 28 28" fill="none">
           <path d="M14 4L4 10v8l10 6 10-6v-8z" stroke-width="1.2" style="animation:cubeShift 6s ease-in-out infinite">
@@ -776,10 +801,12 @@ footer p { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-s
         </svg>
         <span class="hero-axiom">AXIOM</span><span class="hero-3d">3D</span>
       </h1>
-      <p class="hero-tagline">The Edge Nobody Else Has</p>
-      <p class="hero-sub">Real-time Solana intelligence. Every trade. Every wallet. Every pattern.</p>
+      <div class="hero-accent"></div>
+      <p class="hero-headline">We see <span class="hl-teal">every trade</span> on Solana<br>before you even open a chart.</p>
+      <p class="hero-sub">5,000+ transactions per second. 50+ metrics per trade. Wallet profiling, sniper detection, rug prediction &mdash; all in real time. While you're still checking Twitter, we've already scored the coin.</p>
+      <div class="hero-stat"><span class="hero-stat-dot"></span> watching <span class="hero-stat-val">5,247 TPS</span> right now</div>
     </div>
-    <div class="hero-scroll"><div class="scroll-line"></div>scroll</div>
+    <div class="hero-scroll"><div class="scroll-line"></div></div>
   </section>
 
   <div class="section-divider"></div>
