@@ -571,6 +571,7 @@ footer p { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-s
 .speed-lane {
   border-radius: 16px; overflow: hidden; border: 1px solid rgba(153,69,255,0.08);
   background: linear-gradient(135deg, rgba(15,15,36,0.6), rgba(22,22,54,0.3));
+  display: flex; flex-direction: column;
 }
 .speed-lane.manual .speed-lane-header { background: rgba(255,68,102,0.08); border-bottom: 1px solid rgba(255,68,102,0.12); }
 .speed-lane.axiom .speed-lane-header { background: rgba(0,212,170,0.08); border-bottom: 1px solid rgba(0,212,170,0.12); }
@@ -589,10 +590,11 @@ footer p { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-s
 .speed-lane.manual .speed-lane-time { background: rgba(255,68,102,0.1); color: var(--red); }
 .speed-lane.axiom .speed-lane-time { background: rgba(0,212,170,0.1); color: var(--teal-bright); }
 .speed-lane.friends .speed-lane-time { background: rgba(240,185,11,0.1); color: var(--gold); }
-.speed-steps { padding: 20px 24px; }
+.speed-steps { padding: 20px 24px; flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
 .speed-step {
-  display: grid; grid-template-columns: 56px 1fr; gap: 12px; padding: 10px 0;
+  display: grid; grid-template-columns: 56px 1fr; gap: 12px; padding: 8px 0;
   border-bottom: 1px solid rgba(153,69,255,0.04); align-items: start;
+  flex: 1;
 }
 .speed-step:last-child { border-bottom: none; }
 .speed-step-time {
