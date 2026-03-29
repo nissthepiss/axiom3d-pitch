@@ -496,7 +496,7 @@ h1, h2, h3, h4 { font-family: 'Syne', sans-serif; font-weight: 700; letter-spaci
   display: flex; align-items: flex-start; gap: 16px;
   border-bottom: 1px solid rgba(153,69,255,0.06);
 }
-.cta-list li::before { content: '>'; font-family: 'JetBrains Mono', monospace; color: var(--teal); font-weight: 500; flex-shrink: 0; margin-top: 1px; }
+.cta-list li::before { content: ''; display: inline-block; width: 10px; height: 10px; flex-shrink: 0; margin-top: 5px; background: url("data:image/svg+xml,%3Csvg width='10' height='10' viewBox='0 0 10 10' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M3 2l4 3-4 3' stroke='%2314f195' stroke-width='1.3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat center; }
 .telescope {
   font-family: 'Syne', sans-serif; font-size: 1.2rem; font-weight: 600;
   color: var(--text); margin-bottom: 56px; max-width: 500px; margin-left: auto; margin-right: auto;
@@ -722,31 +722,37 @@ footer p { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-s
       </div>
       <div class="stats-grid">
         <div class="stat-card reveal reveal-delay-1">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" style="margin-bottom:8px; opacity:0.7;"><path d="M3 6l5 4-5 4" stroke="#14f195" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 6l5 4-5 4" stroke="#14f195" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"/><path d="M13 6l5 4-5 4" stroke="#14f195" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" opacity="0.25"/></svg>
           <div class="stat-number">5,000+</div>
           <div class="stat-label">Trades per second</div>
           <div class="stat-desc">Every Solana transaction, streamed directly from the blockchain in real time.</div>
         </div>
         <div class="stat-card reveal reveal-delay-2">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" style="margin-bottom:8px; opacity:0.7;"><circle cx="10" cy="10" r="7" stroke="#9945ff" stroke-width="1.3"/><path d="M10 6v4l3 2" stroke="#9945ff" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 3l1.5 1.5" stroke="#9945ff" stroke-width="1.3" stroke-linecap="round" opacity="0.4"/></svg>
           <div class="stat-number">50+</div>
           <div class="stat-label">Metrics per trade</div>
           <div class="stat-desc">Bundle detection, wallet scores, token fingerprints, FDV velocity, sniper flags.</div>
         </div>
         <div class="stat-card reveal reveal-delay-3">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" style="margin-bottom:8px; opacity:0.7;"><rect x="3" y="4" width="14" height="12" rx="2" stroke="#00d4aa" stroke-width="1.3"/><path d="M7 10a2 2 0 104 0 2 2 0 00-4 0z" stroke="#00d4aa" stroke-width="1.3"/><path d="M5 14c0-1.5 1.5-2.5 4-2.5s4 1 4 2.5" stroke="#00d4aa" stroke-width="1.3" stroke-linecap="round" opacity="0.5"/></svg>
           <div class="stat-number">Wallet Profiles</div>
           <div class="stat-label">Behavioral tracking</div>
           <div class="stat-desc">Who's smart money, who's a bot fleet, who consistently rugs. Cross-session memory.</div>
         </div>
         <div class="stat-card reveal reveal-delay-4">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" style="margin-bottom:8px; opacity:0.7;"><circle cx="5" cy="5" r="1.5" fill="#9945ff" opacity="0.6"/><circle cx="15" cy="6" r="1.5" fill="#9945ff" opacity="0.6"/><circle cx="10" cy="14" r="1.5" fill="#9945ff" opacity="0.6"/><circle cx="16" cy="15" r="1.5" fill="#14f195" opacity="0.6"/><line x1="5" y1="5" x2="15" y2="6" stroke="#9945ff" stroke-width="1" opacity="0.3"/><line x1="15" y1="6" x2="10" y2="14" stroke="#9945ff" stroke-width="1" opacity="0.3"/><line x1="10" y1="14" x2="5" y2="5" stroke="#9945ff" stroke-width="1" opacity="0.3"/><line x1="15" y1="6" x2="16" y2="15" stroke="#14f195" stroke-width="1" opacity="0.3"/></svg>
           <div class="stat-number">Constellations</div>
           <div class="stat-label">Network detection</div>
           <div class="stat-desc">Which wallets always move together. Coordinated groups exposed.</div>
         </div>
         <div class="stat-card reveal reveal-delay-5">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" style="margin-bottom:8px; opacity:0.7;"><path d="M14 4a6.5 6.5 0 11-8 0" stroke="#f0b90b" stroke-width="1.3" stroke-linecap="round"/><path d="M14 4l-2-2" stroke="#f0b90b" stroke-width="1.3" stroke-linecap="round"/><path d="M14 4l-2 2" stroke="#f0b90b" stroke-width="1.3" stroke-linecap="round"/></svg>
           <div class="stat-number">Lifecycles</div>
           <div class="stat-label">Birth to death</div>
           <div class="stat-desc">Every token tracked from first trade to last. Full history, every metric preserved.</div>
         </div>
         <div class="stat-card reveal reveal-delay-6">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" style="margin-bottom:8px; opacity:0.7;"><path d="M2 14l3-4 3 2 4-6 3 3 3-2" stroke="#ff4466" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="17" cy="7" r="1.5" stroke="#ff4466" stroke-width="1" fill="rgba(255,68,102,0.2)"/></svg>
           <div class="stat-number">Patterns</div>
           <div class="stat-label">Recognition</div>
           <div class="stat-desc">What early signs predict a 10x versus going to zero. The data tells us.</div>
@@ -776,23 +782,23 @@ footer p { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-s
 
       <div class="ml-grid reveal reveal-delay-2" style="grid-template-columns:1fr 1fr 1fr;">
         <div class="ml-card" style="border-left:3px solid var(--teal-bright);">
-          <h4 style="color:var(--teal-bright);">Pattern Recognition</h4>
+          <h4 style="color:var(--teal-bright);"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="display:inline; vertical-align:-1px; margin-right:5px;"><circle cx="7" cy="5" r="3" stroke="#14f195" stroke-width="1.2"/><path d="M3 10c0 0 1-2 4-2s4 2 4 2" stroke="#14f195" stroke-width="1.2" stroke-linecap="round" opacity="0.5"/><circle cx="5.5" cy="4.5" r="0.5" fill="#14f195" opacity="0.6"/><circle cx="8.5" cy="4.5" r="0.5" fill="#14f195" opacity="0.6"/></svg>Pattern Recognition</h4>
           <p>Trained on thousands of token lifecycles. Sees the <span class="hl">first 10 trades</span> and says: <em>"84% match to $2M+ runners"</em>. Spots correlations across 50+ features simultaneously.</p>
         </div>
         <div class="ml-card" style="border-left:3px solid var(--purple);">
-          <h4 style="color:var(--purple);">Smart Entry Detection</h4>
+          <h4 style="color:var(--purple);"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="display:inline; vertical-align:-1px; margin-right:5px;"><circle cx="7" cy="7" r="5" stroke="#9945ff" stroke-width="1.2"/><circle cx="7" cy="7" r="2" stroke="#9945ff" stroke-width="1.2" opacity="0.5"/><circle cx="7" cy="7" r="0.8" fill="#9945ff"/></svg>Smart Entry Detection</h4>
           <p>News drops, coin appears, <span class="hl">5 wallets with 75%+ WR bought</span>, viewers spiking, signature matches runners. <span class="hl">Bot enters before the crowd notices.</span></p>
         </div>
         <div class="ml-card" style="border-left:3px solid var(--gold);">
-          <h4 style="color:var(--gold);">Risk &amp; R:R Engine</h4>
+          <h4 style="color:var(--gold);"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="display:inline; vertical-align:-1px; margin-right:5px;"><path d="M7 2L2 6v4c0 2.5 2.5 4 5 5 2.5-1 5-2.5 5-5V6L7 2z" stroke="#f0b90b" stroke-width="1.2" stroke-linejoin="round"/><path d="M7 6v3" stroke="#f0b90b" stroke-width="1.2" stroke-linecap="round"/><circle cx="7" cy="10.5" r="0.5" fill="#f0b90b"/></svg>Risk &amp; R:R Engine</h4>
           <p>Position sizing by confidence. Dynamic stop losses by volatility. Automatic profit-taking at optimal points. <span class="hl-g">R:R computed before every entry.</span> No gambling. Math.</p>
         </div>
         <div class="ml-card" style="border-left:3px solid #ff6b9d;">
-          <h4 style="color:#ff6b9d;">Social Media Sentiment</h4>
+          <h4 style="color:#ff6b9d;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="display:inline; vertical-align:-1px; margin-right:5px;"><path d="M2 3h8a1 1 0 011 1v5a1 1 0 01-1 1H5l-3 2V4a1 1 0 011-1z" stroke="#ff6b9d" stroke-width="1.2" stroke-linejoin="round"/><path d="M5 6h4" stroke="#ff6b9d" stroke-width="1" stroke-linecap="round" opacity="0.4"/><path d="M5 8h2" stroke="#ff6b9d" stroke-width="1" stroke-linecap="round" opacity="0.4"/></svg>Social Media Sentiment</h4>
           <p>AI reads Twitter, Telegram, CT in real time. How viral is the narrative? What's the meme? Is it organic hype or manufactured? Sentiment score feeds directly into confidence rating.</p>
         </div>
         <div class="ml-card" style="border-left:3px solid var(--teal);">
-          <h4 style="color:var(--teal);">Perps Expansion</h4>
+          <h4 style="color:var(--teal);"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="display:inline; vertical-align:-1px; margin-right:5px;"><rect x="2" y="3" width="10" height="3" rx="1" stroke="#00d4aa" stroke-width="1.2"/><rect x="2" y="8" width="10" height="3" rx="1" stroke="#00d4aa" stroke-width="1.2" opacity="0.5"/><path d="M7 6v2" stroke="#00d4aa" stroke-width="1.2" stroke-linecap="round" opacity="0.3"/></svg>Perps Expansion</h4>
           <p>Same intelligence on <span class="hl-p">perps</span>. Funding rate arb, liquidation cascade detection. Spot data leads perps &mdash; we see smart money move <em>before</em> perps price.</p>
         </div>
       </div>
@@ -825,7 +831,7 @@ footer p { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-s
             </div>
             <div class="speed-step">
               <div class="speed-step-time">+0:30</div>
-              <div class="speed-step-label">Copies CA, opens DexScreener. Checks chart, volume, holders</div>
+              <div class="speed-step-label">Copies CA, opens Axiom. Checks chart, volume, holders</div>
             </div>
             <div class="speed-step">
               <div class="speed-step-time">+1:30</div>
@@ -956,7 +962,7 @@ footer p { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-s
       </div>
 
       <div class="speed-verdict reveal reveal-delay-5">
-        The bot trades in milliseconds. Your friends trade in seconds with full AI analysis.<br><span>Everyone else is still checking DexScreener.</span>
+        The bot trades in milliseconds. Your friends trade in seconds with full AI analysis.<br><span>Everyone else is still checking Axiom.</span>
       </div>
 
       <!-- Exponential scaling callout -->
@@ -1842,11 +1848,11 @@ footer p { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-s
         <h2 class="section-title">Main quest + side quests</h2>
       </div>
       <div class="h-roadmap reveal">
-        <div class="h-roadmap-node" style="border-left:3px solid var(--teal-bright);"><span class="stage-tag now">Live now</span><h4>Data Collection</h4><p>System live, building irreplaceable dataset. Every day = a day no one can catch up.</p></div>
-        <div class="h-roadmap-node" style="border-left:3px solid var(--purple);"><span class="stage-tag next">Next</span><h4>Signals &amp; Edge</h4><p>Telegram/Discord signal bot. TUI becomes real trading terminal.</p></div>
-        <div class="h-roadmap-node" style="border-left:3px solid var(--purple-dim);"><span class="stage-tag side">Side quest</span><h4>"Day in the Trenches"</h4><p>Paid daily digest. What ran? What rugged? Top wallets?</p></div>
-        <div class="h-roadmap-node" style="border-left:3px solid var(--purple-dim);"><span class="stage-tag side">Side quest</span><h4>Chrome Overlay</h4><p>Analytics on axiom.trade. Wallet scores, trailing stop loss.</p></div>
-        <div class="h-roadmap-node" style="border-left:3px solid var(--teal-bright);"><span class="stage-tag main">Main quest</span><h4>The Bot</h4><p>Not vibes. Not hope. Data.</p></div>
+        <div class="h-roadmap-node" style="border-left:3px solid var(--teal-bright);"><span class="stage-tag now">Live now</span><h4><svg width="12" height="12" viewBox="0 0 12 12" fill="none" style="display:inline; vertical-align:-1px; margin-right:4px;"><ellipse cx="6" cy="3" rx="4" ry="1.5" stroke="#14f195" stroke-width="1.1"/><path d="M2 3v6c0 .8 1.8 1.5 4 1.5s4-.7 4-1.5V3" stroke="#14f195" stroke-width="1.1"/><path d="M2 6c0 .8 1.8 1.5 4 1.5s4-.7 4-1.5" stroke="#14f195" stroke-width="1.1" opacity="0.4"/></svg>Data Collection</h4><p>System live, building irreplaceable dataset. Every day = a day no one can catch up.</p></div>
+        <div class="h-roadmap-node" style="border-left:3px solid var(--purple);"><span class="stage-tag next">Next</span><h4><svg width="12" height="12" viewBox="0 0 12 12" fill="none" style="display:inline; vertical-align:-1px; margin-right:4px;"><path d="M6 1v3" stroke="#9945ff" stroke-width="1.1" stroke-linecap="round"/><path d="M3.5 4a4 4 0 015 0" stroke="#9945ff" stroke-width="1.1" stroke-linecap="round" opacity="0.5"/><path d="M1.5 2.5a7 7 0 019 0" stroke="#9945ff" stroke-width="1.1" stroke-linecap="round" opacity="0.3"/><circle cx="6" cy="9" r="2" stroke="#9945ff" stroke-width="1.1"/></svg>Signals &amp; Edge</h4><p>Telegram/Discord signal bot. TUI becomes real trading terminal.</p></div>
+        <div class="h-roadmap-node" style="border-left:3px solid var(--purple-dim);"><span class="stage-tag side">Side quest</span><h4><svg width="12" height="12" viewBox="0 0 12 12" fill="none" style="display:inline; vertical-align:-1px; margin-right:4px;"><rect x="2" y="1" width="8" height="10" rx="1" stroke="#7b3fe4" stroke-width="1.1"/><path d="M4 4h4M4 6h4M4 8h2" stroke="#7b3fe4" stroke-width="1" stroke-linecap="round" opacity="0.4"/></svg>"Day in the Trenches"</h4><p>Paid daily digest. What ran? What rugged? Top wallets?</p></div>
+        <div class="h-roadmap-node" style="border-left:3px solid var(--purple-dim);"><span class="stage-tag side">Side quest</span><h4><svg width="12" height="12" viewBox="0 0 12 12" fill="none" style="display:inline; vertical-align:-1px; margin-right:4px;"><rect x="1" y="2" width="10" height="7" rx="1" stroke="#7b3fe4" stroke-width="1.1"/><rect x="3" y="4" width="6" height="3" rx="0.5" stroke="#7b3fe4" stroke-width="1" opacity="0.4"/></svg>Chrome Overlay</h4><p>Analytics on axiom.trade. Wallet scores, trailing stop loss.</p></div>
+        <div class="h-roadmap-node" style="border-left:3px solid var(--teal-bright);"><span class="stage-tag main">Main quest</span><h4><svg width="12" height="12" viewBox="0 0 12 12" fill="none" style="display:inline; vertical-align:-1px; margin-right:4px;"><circle cx="6" cy="6" r="4" stroke="#14f195" stroke-width="1.1"/><path d="M6 2v1M6 9v1M2 6h1M9 6h1" stroke="#14f195" stroke-width="1.1" stroke-linecap="round" opacity="0.4"/><circle cx="4.5" cy="5.5" r="0.6" fill="#14f195"/><circle cx="7.5" cy="5.5" r="0.6" fill="#14f195"/><path d="M4.5 7.5c.5.5 2.5.5 3 0" stroke="#14f195" stroke-width="1" stroke-linecap="round"/></svg>The Bot</h4><p>Not vibes. Not hope. Data.</p></div>
       </div>
       <div id="money" style="margin-top:48px;">
         <div class="two-col" style="gap:32px; align-items:center;">
