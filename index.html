@@ -65,6 +65,105 @@ body {
 }
 
 .content { position: relative; z-index: 10; }
+
+/* ====== SIDE NAV ====== */
+.side-nav {
+  position: fixed; right: 24px; top: 50%; transform: translateY(-50%);
+  z-index: 100; display: flex; flex-direction: column; align-items: flex-end;
+  gap: 0; opacity: 0; pointer-events: none;
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.side-nav.visible { opacity: 1; pointer-events: auto; }
+
+/* The vertical track line behind the dots */
+.side-nav::before {
+  content: ''; position: absolute; right: 4px; top: 8px; bottom: 8px; width: 1px;
+  background: linear-gradient(to bottom,
+    transparent,
+    rgba(153, 69, 255, 0.12) 15%,
+    rgba(0, 212, 170, 0.08) 50%,
+    rgba(153, 69, 255, 0.12) 85%,
+    transparent
+  );
+  pointer-events: none;
+}
+
+.side-nav-item {
+  display: flex; align-items: center; gap: 12px; justify-content: flex-end;
+  padding: 7px 0; cursor: pointer; text-decoration: none;
+  position: relative;
+}
+
+.side-nav-label {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.58rem; letter-spacing: 0.06em;
+  text-transform: uppercase; white-space: nowrap;
+  color: transparent; pointer-events: none;
+  padding: 3px 10px 3px 12px; border-radius: 4px;
+  background: transparent;
+  transform: translateX(8px);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.side-nav-item:hover .side-nav-label {
+  color: var(--text-dim);
+  background: rgba(15, 15, 36, 0.85);
+  border: 1px solid rgba(153, 69, 255, 0.1);
+  backdrop-filter: blur(8px);
+  transform: translateX(0);
+  pointer-events: auto;
+}
+
+.side-nav-item.active .side-nav-label {
+  color: var(--teal);
+  background: rgba(0, 212, 170, 0.06);
+  border: 1px solid rgba(0, 212, 170, 0.12);
+  backdrop-filter: blur(8px);
+  transform: translateX(0);
+  pointer-events: auto;
+}
+
+.side-nav-dot {
+  width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0;
+  background: var(--text-muted); position: relative;
+  opacity: 0.25;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Hover ring */
+.side-nav-item:hover .side-nav-dot {
+  opacity: 0.6; background: var(--purple);
+  box-shadow: 0 0 8px rgba(153, 69, 255, 0.3);
+  transform: scale(1.4);
+}
+
+/* Active state — glowing teal orb */
+.side-nav-item.active .side-nav-dot {
+  opacity: 1;
+  width: 7px; height: 7px;
+  background: var(--teal-bright);
+  box-shadow:
+    0 0 6px rgba(20, 241, 149, 0.6),
+    0 0 16px rgba(20, 241, 149, 0.3),
+    0 0 32px rgba(20, 241, 149, 0.1);
+  animation: navPulse 3s ease-in-out infinite;
+}
+
+@keyframes navPulse {
+  0%, 100% {
+    box-shadow:
+      0 0 6px rgba(20, 241, 149, 0.6),
+      0 0 16px rgba(20, 241, 149, 0.3),
+      0 0 32px rgba(20, 241, 149, 0.1);
+  }
+  50% {
+    box-shadow:
+      0 0 8px rgba(20, 241, 149, 0.8),
+      0 0 22px rgba(20, 241, 149, 0.4),
+      0 0 44px rgba(20, 241, 149, 0.15);
+  }
+}
+
+@media (max-width: 900px) { .side-nav { display: none; } }
 section { position: relative; padding: 120px 24px; }
 .container { max-width: 1100px; margin: 0 auto; }
 
@@ -517,10 +616,30 @@ footer p { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-s
 <canvas id="particles"></canvas>
 <div class="noise"></div>
 
+<!-- Side Nav (outside content for proper z-index stacking) -->
+<nav class="side-nav" id="sideNav">
+  <a class="side-nav-item active" href="#hero"><span class="side-nav-label">Top</span><span class="side-nav-dot"></span></a>
+  <a class="side-nav-item" href="#about"><span class="side-nav-label">About</span><span class="side-nav-dot"></span></a>
+  <a class="side-nav-item" href="#simple"><span class="side-nav-label">The pitch</span><span class="side-nav-dot"></span></a>
+  <a class="side-nav-item" href="#sees"><span class="side-nav-label">What it sees</span><span class="side-nav-dot"></span></a>
+  <a class="side-nav-item" href="#roadmap"><span class="side-nav-label">Roadmap</span><span class="side-nav-dot"></span></a>
+  <a class="side-nav-item" href="#money"><span class="side-nav-label">Revenue</span><span class="side-nav-dot"></span></a>
+  <a class="side-nav-item" href="#ml"><span class="side-nav-label">ML / AI</span><span class="side-nav-dot"></span></a>
+  <a class="side-nav-item" href="#speed"><span class="side-nav-label">Speed gap</span><span class="side-nav-dot"></span></a>
+  <a class="side-nav-item" href="#perps"><span class="side-nav-label">Perps</span><span class="side-nav-dot"></span></a>
+  <a class="side-nav-item" href="#chains"><span class="side-nav-label">Multi-chain</span><span class="side-nav-dot"></span></a>
+  <a class="side-nav-item" href="#markets"><span class="side-nav-label">Beyond crypto</span><span class="side-nav-dot"></span></a>
+  <a class="side-nav-item" href="#meta"><span class="side-nav-label">Meta tracker</span><span class="side-nav-dot"></span></a>
+  <a class="side-nav-item" href="#comps"><span class="side-nav-label">Acquisitions</span><span class="side-nav-dot"></span></a>
+  <a class="side-nav-item" href="#mockups"><span class="side-nav-label">Mockups</span><span class="side-nav-dot"></span></a>
+  <a class="side-nav-item" href="#built"><span class="side-nav-label">What's built</span><span class="side-nav-dot"></span></a>
+  <a class="side-nav-item" href="#cta"><span class="side-nav-label">Let's talk</span><span class="side-nav-dot"></span></a>
+</nav>
+
 <div class="content">
 
   <!-- ====== HERO ====== -->
-  <section class="hero">
+  <section class="hero" id="hero">
     <div class="parallax-orb orb-1" data-speed="0.03"></div>
     <div class="parallax-orb orb-2" data-speed="0.05"></div>
     <div class="hero-inner">
@@ -535,7 +654,7 @@ footer p { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-s
   <div class="section-divider"></div>
 
   <!-- ====== ABOUT PAUL ====== -->
-  <section style="background: linear-gradient(180deg, var(--void) 0%, var(--deep) 100%);">
+  <section id="about" style="background: linear-gradient(180deg, var(--void) 0%, var(--deep) 100%);">
     <div class="container" style="max-width:740px;">
       <div class="reveal" style="text-align:center; margin-bottom:48px;">
         <div style="font-family:'Syne',sans-serif; font-size:clamp(2.2rem,5vw,3.5rem); font-weight:800; color:var(--text); line-height:1.1; margin-bottom:8px;">
@@ -566,7 +685,7 @@ footer p { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-s
   <div class="section-divider"></div>
 
   <!-- ====== FRIENDS PITCH ====== -->
-  <section class="friends">
+  <section class="friends" id="simple">
     <div class="container friends-content">
       <div class="reveal">
         <div class="section-label">The simple version</div>
@@ -586,7 +705,7 @@ footer p { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-s
   <div class="section-divider"></div>
 
   <!-- ====== WHAT IT SEES ====== -->
-  <section class="sees">
+  <section class="sees" id="sees">
     <div class="container">
       <div class="reveal">
         <div class="section-label">What it sees</div>
@@ -630,7 +749,7 @@ footer p { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-s
   <div class="section-divider"></div>
 
   <!-- ====== ROADMAP ====== -->
-  <section class="roadmap">
+  <section class="roadmap" id="roadmap">
     <div class="container">
       <div class="parallax-orb orb-3" data-speed="0.02"></div>
       <div class="reveal">
@@ -675,7 +794,7 @@ footer p { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-s
   <div class="section-divider"></div>
 
   <!-- ====== MONEY AT EVERY STAGE ====== -->
-  <section class="money">
+  <section class="money" id="money">
     <div class="container">
       <div class="reveal">
         <div class="section-label">Revenue path</div>
@@ -702,7 +821,7 @@ footer p { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-s
   <div class="section-divider"></div>
 
   <!-- ====== ML & INTELLIGENCE ====== -->
-  <section class="ml-section" style="background: linear-gradient(180deg, var(--void) 0%, var(--deep) 50%, var(--void) 100%);">
+  <section class="ml-section" id="ml" style="background: linear-gradient(180deg, var(--void) 0%, var(--deep) 50%, var(--void) 100%);">
     <div class="container">
       <div class="reveal">
         <div class="section-label">Machine learning</div>
@@ -753,7 +872,7 @@ footer p { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-s
   <div class="section-divider"></div>
 
   <!-- ====== SPEED COMPARISON ====== -->
-  <section class="speed-section" style="background: linear-gradient(180deg, var(--void), var(--deep));">
+  <section class="speed-section" id="speed" style="background: linear-gradient(180deg, var(--void), var(--deep));">
     <div class="container">
       <div class="reveal">
         <div class="section-label">The speed gap</div>
@@ -804,48 +923,6 @@ footer p { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-s
           </div>
         </div>
 
-        <!-- Axiom3d Lane -->
-        <div class="speed-lane axiom reveal reveal-delay-2">
-          <div class="speed-lane-header">
-            <div class="speed-lane-title">Axiom3d</div>
-            <div class="speed-lane-time">~200ms</div>
-          </div>
-          <div class="speed-steps">
-            <div class="speed-step">
-              <div class="speed-step-time">0ms</div>
-              <div class="speed-step-label"><strong>Token detected.</strong> First trade hits our stream</div>
-            </div>
-            <div class="speed-step">
-              <div class="speed-step-time">10ms</div>
-              <div class="speed-step-label">Parsed, classified, 50+ metrics computed instantly</div>
-            </div>
-            <div class="speed-step">
-              <div class="speed-step-time">20ms</div>
-              <div class="speed-step-label">Wallet profiles checked &mdash; 5 wallets with 75%+ win rate buying</div>
-            </div>
-            <div class="speed-step">
-              <div class="speed-step-time">30ms</div>
-              <div class="speed-step-label">Token fingerprint: matches 84% of previous runners</div>
-            </div>
-            <div class="speed-step">
-              <div class="speed-step-time">50ms</div>
-              <div class="speed-step-label">Safety check: no insider concentration, no sniper fleet, dev clean</div>
-            </div>
-            <div class="speed-step">
-              <div class="speed-step-time">80ms</div>
-              <div class="speed-step-label">ML confidence: <strong style="color:var(--teal);">92%</strong>. R:R calculated: <strong style="color:var(--gold);">4.2:1</strong></div>
-            </div>
-            <div class="speed-step">
-              <div class="speed-step-time">100ms</div>
-              <div class="speed-step-label">Signal fired to Telegram. Position sized. Stop loss set</div>
-            </div>
-            <div class="speed-step">
-              <div class="speed-step-time">200ms</div>
-              <div class="speed-step-label"><strong style="color:var(--teal-bright);">Trade executed.</strong> In before the crowd even sees the tweet</div>
-            </div>
-          </div>
-        </div>
-
         <!-- Friends & Early Partners Lane -->
         <div class="speed-lane friends reveal reveal-delay-3">
           <div class="speed-lane-header">
@@ -884,6 +961,48 @@ footer p { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-s
             <div class="speed-step">
               <div class="speed-step-time">+30s</div>
               <div class="speed-step-label"><strong style="color:var(--gold);">Trade executed.</strong> Informed decision in 30 seconds. No tabs. No guessing. No FOMO.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Axiom3d Bot Lane -->
+        <div class="speed-lane axiom reveal reveal-delay-3">
+          <div class="speed-lane-header">
+            <div class="speed-lane-title">Axiom3d Bot</div>
+            <div class="speed-lane-time">~200ms</div>
+          </div>
+          <div class="speed-steps">
+            <div class="speed-step">
+              <div class="speed-step-time">0ms</div>
+              <div class="speed-step-label"><strong>Token detected.</strong> First trade hits our stream</div>
+            </div>
+            <div class="speed-step">
+              <div class="speed-step-time">10ms</div>
+              <div class="speed-step-label">Parsed, classified, 50+ metrics computed instantly</div>
+            </div>
+            <div class="speed-step">
+              <div class="speed-step-time">20ms</div>
+              <div class="speed-step-label">Wallet profiles checked &mdash; 5 wallets with 75%+ win rate buying</div>
+            </div>
+            <div class="speed-step">
+              <div class="speed-step-time">30ms</div>
+              <div class="speed-step-label">Token fingerprint: matches 84% of previous runners</div>
+            </div>
+            <div class="speed-step">
+              <div class="speed-step-time">50ms</div>
+              <div class="speed-step-label">Safety check: no insider concentration, no sniper fleet, dev clean</div>
+            </div>
+            <div class="speed-step">
+              <div class="speed-step-time">80ms</div>
+              <div class="speed-step-label">ML confidence: <strong style="color:var(--teal);">92%</strong>. R:R calculated: <strong style="color:var(--gold);">4.2:1</strong></div>
+            </div>
+            <div class="speed-step">
+              <div class="speed-step-time">100ms</div>
+              <div class="speed-step-label">Signal fired to Telegram. Position sized. Stop loss set</div>
+            </div>
+            <div class="speed-step">
+              <div class="speed-step-time">200ms</div>
+              <div class="speed-step-label"><strong style="color:var(--teal-bright);">Trade executed.</strong> In before the crowd even sees the tweet</div>
             </div>
           </div>
         </div>
@@ -1213,7 +1332,7 @@ footer p { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-s
   <div class="section-divider"></div>
 
   <!-- ====== PERPS ====== -->
-  <section style="background: linear-gradient(180deg, var(--void) 0%, var(--deep) 50%, var(--void) 100%);">
+  <section id="perps" style="background: linear-gradient(180deg, var(--void) 0%, var(--deep) 50%, var(--void) 100%);">
     <div class="container">
       <div class="reveal">
         <div class="section-label">Perpetuals</div>
@@ -1303,7 +1422,7 @@ footer p { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-s
   <div class="section-divider"></div>
 
   <!-- ====== MULTI-CHAIN ====== -->
-  <section class="multichain" style="background: var(--void);">
+  <section class="multichain" id="chains" style="background: var(--void);">
     <div class="container">
       <div class="reveal">
         <div class="section-label">Multi-chain</div>
@@ -1343,7 +1462,7 @@ footer p { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-s
   <div class="section-divider"></div>
 
   <!-- ====== BEYOND CRYPTO ====== -->
-  <section class="markets">
+  <section class="markets" id="markets">
     <div class="container">
       <div class="reveal">
         <div class="section-label">Beyond crypto</div>
@@ -1377,7 +1496,7 @@ footer p { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-s
   <div class="section-divider"></div>
 
   <!-- ====== META TRACKING ====== -->
-  <section style="background: linear-gradient(180deg, var(--void) 0%, var(--deep) 50%, var(--void) 100%);">
+  <section id="meta" style="background: linear-gradient(180deg, var(--void) 0%, var(--deep) 50%, var(--void) 100%);">
     <div class="container">
       <div class="reveal">
         <div class="section-label">AI market intelligence</div>
@@ -1599,7 +1718,7 @@ footer p { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-s
   <div class="section-divider"></div>
 
   <!-- ====== ACQUISITION POTENTIAL ====== -->
-  <section class="acquisitions" style="background: var(--void);">
+  <section class="acquisitions" id="comps" style="background: var(--void);">
     <div class="container">
       <div class="reveal">
         <div class="section-label">The bigger picture</div>
@@ -1639,7 +1758,7 @@ footer p { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-s
   <div class="section-divider"></div>
 
   <!-- ====== VISUAL MOCKUPS ====== -->
-  <section class="mockup-section" style="background: linear-gradient(180deg, var(--void) 0%, var(--deep) 100%);">
+  <section class="mockup-section" id="mockups" style="background: linear-gradient(180deg, var(--void) 0%, var(--deep) 100%);">
     <div class="container">
       <div class="reveal">
         <div class="section-label">What it looks like</div>
@@ -1782,7 +1901,7 @@ footer p { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-s
   <div class="section-divider"></div>
 
   <!-- ====== WHAT'S BUILT ====== -->
-  <section class="built" style="background: var(--void);">
+  <section class="built" id="built" style="background: var(--void);">
     <div class="container">
       <div class="reveal">
         <div class="section-label">Already built</div>
@@ -1801,7 +1920,7 @@ footer p { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-s
   <div class="section-divider"></div>
 
   <!-- ====== CTA ====== -->
-  <section class="cta">
+  <section class="cta" id="cta">
     <div class="container">
       <div class="reveal">
         <div class="section-label">The ask</div>
@@ -1900,6 +2019,72 @@ footer p { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-s
       });
       ticking = true;
     }
+  });
+})();
+
+// Side Navigation
+(function() {
+  const nav = document.getElementById('sideNav');
+  if (!nav) return;
+
+  const navItems = nav.querySelectorAll('.side-nav-item');
+  const sectionIds = Array.from(navItems).map(item => item.getAttribute('href').slice(1));
+  const sections = sectionIds.map(id => document.getElementById(id)).filter(Boolean);
+  const heroSection = document.getElementById('hero');
+
+  // Show/hide nav based on hero visibility
+  let navVisible = false;
+  const heroObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        nav.classList.remove('visible');
+        navVisible = false;
+      } else {
+        nav.classList.add('visible');
+        navVisible = true;
+      }
+    });
+  }, { threshold: 0.3 });
+  if (heroSection) heroObserver.observe(heroSection);
+
+  // Track active section with IntersectionObserver
+  let currentActive = null;
+  const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+        if (id && id !== currentActive) {
+          currentActive = id;
+          navItems.forEach(item => {
+            const href = item.getAttribute('href').slice(1);
+            if (href === id) {
+              item.classList.add('active');
+            } else {
+              item.classList.remove('active');
+            }
+          });
+        }
+      }
+    });
+  }, {
+    rootMargin: '-30% 0px -60% 0px',
+    threshold: 0
+  });
+
+  sections.forEach(section => sectionObserver.observe(section));
+
+  // Smooth scroll on click
+  navItems.forEach(item => {
+    item.addEventListener('click', (e) => {
+      e.preventDefault();
+      const targetId = item.getAttribute('href').slice(1);
+      const target = document.getElementById(targetId);
+      if (target) {
+        const offset = targetId === 'hero' ? 0 : 60;
+        const y = target.getBoundingClientRect().top + window.pageYOffset - offset;
+        window.scrollTo({ top: y, behavior: 'smooth' });
+      }
+    });
   });
 })();
 </script>
