@@ -877,16 +877,16 @@ footer p { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-s
           <div style="font-size:1rem; color:var(--text); line-height:1.85; overflow:visible;">
             <div class="stats-showcase reveal" style="float:right; padding:0; margin:0 0 16px 24px; display:block; width:220px;">
               <div style="position:relative;">
-                <div class="stats-showcase-inner" style="max-width:220px; cursor:zoom-in;" id="statsThumb">
+                <div class="stats-showcase-inner" style="max-width:220px; cursor:pointer;" id="statsThumb" onclick="flashFootnote()">
                   <img src="stats.png" alt="Trading bot leaderboard — 751x, 557x returns" loading="lazy">
                 </div>
-                <span style="position:absolute; top:0px; right:6px; color:var(--teal); font-family:'JetBrains Mono',monospace; font-size:1.8rem; font-weight:700; z-index:5; line-height:1;">*</span>
+                <span id="statsAsterisk" onclick="flashFootnote()" style="position:absolute; top:0px; right:6px; color:var(--teal); font-family:'JetBrains Mono',monospace; font-size:1.8rem; font-weight:700; z-index:5; line-height:1; cursor:pointer;">*</span>
               </div>
             </div>
             <p style="margin-bottom:16px;">I'm a gamer, a nerd, and an autist with one goal: <strong style="color:var(--teal);">monetise being a sperg</strong>. Hyperfocusing 16 hours straight is a superpower when the thing is building trading infrastructure.</p>
             <p style="margin-bottom:16px;">On the bleeding edge of AI &mdash; following every model drop, every capability unlock, every day. I already built <strong style="color:var(--teal);">4 successful CA-announcing bots</strong><span style="color:var(--teal);">*</span> &mdash; they worked despite being held together with free APIs and duct tape. Now I've got the real tools &mdash; paid infrastructure, direct blockchain access &mdash; and I can make this <strong style="color:var(--purple);">thousands of times more accurate</strong>.</p>
             <p style="margin-bottom:16px;"><strong style="color:var(--teal);">Come help me make this ours. We can all eat.</strong></p>
-            <p style="font-family:'JetBrains Mono',monospace; font-size:0.7rem; color:var(--text-dim); opacity:0.75; line-height:1.6; margin-top:24px; margin-bottom:0;"><span style="color:var(--teal); font-weight:700;">*</span>&nbsp;Performance of a bot I built on a slow, free API (30+ seconds market delay, 95% of parameters missing). Imagine the potential with real-time data.</p>
+            <p id="statsFootnote" style="font-family:'JetBrains Mono',monospace; font-size:0.7rem; color:var(--text-dim); opacity:0.75; line-height:1.6; margin-top:24px; margin-bottom:0; transition: color 0.3s ease, opacity 0.3s ease;"><span style="color:var(--teal); font-weight:700;">*</span>&nbsp;Performance of a bot I built on a slow, free API (30+ seconds market delay, 95% of parameters missing). Imagine the potential with real-time data.</p>
           </div>
         </div>
         <!-- RIGHT: Friends pitch -->
@@ -2096,6 +2096,22 @@ footer p { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-s
 </div>
 
 <script>
+// Asterisk -> footnote flash
+function flashFootnote() {
+  const el = document.getElementById('statsFootnote');
+  if (!el || el.dataset.flashing) return;
+  el.dataset.flashing = '1';
+  el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  el.style.transition = 'text-shadow 0.4s ease, opacity 0.4s ease';
+  el.style.textShadow = '0 0 8px rgba(0,212,170,0.6), 0 0 20px rgba(0,212,170,0.3)';
+  el.style.opacity = '1';
+  setTimeout(() => {
+    el.style.textShadow = '';
+    el.style.opacity = '0.75';
+    delete el.dataset.flashing;
+  }, 1800);
+}
+
 // Particles
 (function() {
   const canvas = document.getElementById('particles');
