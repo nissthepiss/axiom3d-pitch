@@ -227,19 +227,11 @@ h1, h2, h3, h4 { font-family: 'Syne', sans-serif; font-weight: 700; letter-spaci
 }
 .hero-badge .dot { width: 6px; height: 6px; background: var(--teal-bright); border-radius: 50%; animation: pulse 2s ease-in-out infinite; }
 .hero h1 {
-  font-weight: 600; line-height: 1; margin-bottom: 28px;
-  opacity: 0; animation: fadeUp 1s 0.5s cubic-bezier(0.16,1,0.3,1) forwards;
-  display: inline-flex; align-items: baseline; justify-content: center; gap: 0;
-  font-size: clamp(2.2rem, 7vw, 5rem); letter-spacing: 0.25em;
-  position: relative;
-}
-.hero h1 .logo-axiom {
-  color: var(--teal-bright);
-  text-shadow: 0 0 30px rgba(20,241,149,0.25), 0 0 60px rgba(20,241,149,0.1);
-}
-.hero h1 .logo-3d {
-  color: var(--text-dim); font-weight: 400; letter-spacing: 0.25em;
-  margin-left: 0.15em;
+  font-size: clamp(2.2rem, 8vw, 5.5rem); font-weight: 800; letter-spacing: -0.04em; line-height: 0.95;
+  background: linear-gradient(135deg, #fff 0%, var(--purple) 50%, var(--teal) 100%);
+  background-size: 200% 200%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  animation: titleGradient 8s ease-in-out infinite, fadeUp 1s 0.5s cubic-bezier(0.16,1,0.3,1) forwards;
+  opacity: 0; filter: drop-shadow(0 0 40px rgba(153,69,255,0.12)); margin-bottom: 28px;
 }
 @keyframes titleGradient { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
 .hero-tagline {
@@ -705,7 +697,7 @@ footer p { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-s
   .chain-note { padding: 16px 20px !important; font-size: 0.82rem !important; }
 }
 @media (max-width: 480px) {
-  .hero h1 { font-size: clamp(1.6rem, 8vw, 3rem); letter-spacing: 0.2em; }
+  .hero h1 { font-size: clamp(1.8rem, 10vw, 3.5rem); }
   .hero-tagline { font-size: 1rem !important; }
   .hero-sub { font-size: 0.9rem !important; }
   .friends-text { padding: 20px 16px !important; }
@@ -752,7 +744,7 @@ footer p { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-s
     <div class="parallax-orb orb-2" data-speed="0.05"></div>
     <div class="hero-inner">
       <div class="hero-badge"><span class="dot"></span> System Live &mdash; Collecting Now</div>
-      <h1><span class="logo-axiom">AXIOM</span><span class="logo-3d">3D</span></h1>
+      <h1>AXIOM3D</h1>
       <p class="hero-tagline">The Edge Nobody Else Has</p>
       <p class="hero-sub">Real-time Solana intelligence. Every trade. Every wallet. Every pattern.</p>
     </div>
