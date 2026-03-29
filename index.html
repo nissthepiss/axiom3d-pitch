@@ -719,7 +719,12 @@ footer p { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-s
   .two-col { gap: 24px !important; }
   .built-strip { gap: 16px 24px; }
   .stats-showcase-inner { max-width: 100%; }
-  .stats-showcase[style*="float:right"] { float: none !important; width: 100% !important; margin: 16px 0 !important; display: flex !important; justify-content: center; }
+  div[style*="overflow:visible"] { display: flex !important; flex-direction: column; }
+  div[style*="overflow:visible"] > .stats-showcase { float: none !important; width: 100% !important; margin: 16px 0 !important; display: flex !important; justify-content: center; order: 4; }
+  div[style*="overflow:visible"] > p:nth-child(2) { order: 1; }
+  div[style*="overflow:visible"] > p:nth-child(3) { order: 2; }
+  div[style*="overflow:visible"] > p:nth-child(4) { order: 3; }
+  div[style*="overflow:visible"] > p:nth-child(5) { order: 5; }
   .built-strip-val { font-size: 1.2rem; }
   /* Fix SVG chart overflow */
   .chart-container svg { margin-left: 16px !important; }
