@@ -342,6 +342,97 @@ h1, h2, h3, h4 { font-family: 'Syne', sans-serif; font-weight: 700; letter-spaci
   background: var(--gradient-1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
 }
 
+/* ====== BUILD FLOWCHART ====== */
+.build-flow {
+  display: flex; flex-direction: column; align-items: center; gap: 0;
+  position: relative;
+}
+
+.flow-node {
+  display: flex; flex-direction: column; align-items: center; text-align: center;
+  padding: 20px 24px 16px; border-radius: 16px; position: relative; width: 100%;
+  max-width: 280px;
+  background: linear-gradient(135deg, rgba(15,15,36,0.9), rgba(22,22,54,0.5));
+  border: 1px solid rgba(153,69,255,0.1); backdrop-filter: blur(8px);
+  transition: border-color 0.4s ease, box-shadow 0.4s ease;
+}
+.flow-node:hover { border-color: rgba(153,69,255,0.25); box-shadow: 0 0 24px rgba(153,69,255,0.08); }
+
+.flow-node--foundation { border-color: rgba(20,241,149,0.15); }
+.flow-node--foundation:hover { border-color: rgba(20,241,149,0.3); box-shadow: 0 0 24px rgba(20,241,149,0.08); }
+.flow-node--portal { border-color: rgba(0,212,170,0.18); max-width: 300px; }
+.flow-node--portal:hover { border-color: rgba(0,212,170,0.35); box-shadow: 0 0 28px rgba(0,212,170,0.1); }
+.flow-node--ml { border-color: rgba(240,185,11,0.15); }
+.flow-node--ml:hover { border-color: rgba(240,185,11,0.3); box-shadow: 0 0 24px rgba(240,185,11,0.08); }
+.flow-node--goal {
+  border-color: rgba(20,241,149,0.2);
+  background: linear-gradient(135deg, rgba(20,241,149,0.04), rgba(15,15,36,0.9), rgba(153,69,255,0.03));
+}
+.flow-node--goal:hover { border-color: rgba(20,241,149,0.4); box-shadow: 0 0 32px rgba(20,241,149,0.12), 0 0 64px rgba(20,241,149,0.04); }
+
+.flow-node__icon { width: 56px; height: 56px; margin-bottom: 10px; }
+.flow-node__icon--goal { filter: drop-shadow(0 0 8px rgba(20,241,149,0.3)); }
+
+.flow-node__label {
+  font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.05rem; color: var(--text);
+  letter-spacing: -0.01em;
+}
+.flow-node__sub {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--text-muted);
+  letter-spacing: 0.02em; margin-top: 4px;
+}
+.flow-node__badge {
+  position: absolute; top: -8px; right: 16px;
+  font-family: 'JetBrains Mono', monospace; font-size: 0.55rem; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 3px 10px; border-radius: 20px;
+  background: rgba(20,241,149,0.12); color: var(--teal-bright);
+  border: 1px solid rgba(20,241,149,0.2);
+}
+.flow-node__badge--goal {
+  background: linear-gradient(135deg, rgba(20,241,149,0.15), rgba(153,69,255,0.1));
+  color: var(--teal-bright);
+  border-color: rgba(20,241,149,0.3);
+  animation: goalPulse 3s ease-in-out infinite;
+}
+@keyframes goalPulse {
+  0%, 100% { box-shadow: 0 0 8px rgba(20,241,149,0.1); }
+  50% { box-shadow: 0 0 16px rgba(20,241,149,0.25); }
+}
+
+/* Arrows */
+.flow-arrow { width: 100%; max-width: 300px; height: 48px; display: flex; justify-content: center; }
+.flow-arrow svg { width: 100%; height: 100%; overflow: visible; }
+.flow-arrow--final { max-width: 60px; }
+
+/* Side quests row */
+.flow-quests {
+  display: flex; gap: 10px; justify-content: center; align-items: stretch;
+  width: 100%; position: relative; padding: 0 4px;
+}
+.flow-quest {
+  flex: 1; display: flex; flex-direction: column; align-items: center; text-align: center;
+  padding: 14px 8px 10px; border-radius: 12px;
+  background: linear-gradient(135deg, rgba(153,69,255,0.06), rgba(15,15,36,0.8));
+  border: 1px solid rgba(153,69,255,0.12);
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+.flow-quest:hover { border-color: rgba(153,69,255,0.3); transform: translateY(-2px); }
+
+.flow-quest__icon { width: 36px; height: 36px; margin-bottom: 6px; }
+.flow-quest__label {
+  font-family: 'Syne', sans-serif; font-weight: 600; font-size: 0.72rem; color: var(--text);
+  line-height: 1.3; text-wrap: balance;
+}
+.flow-quests__tag {
+  position: absolute; top: -10px; left: 50%; transform: translateX(-50%);
+  font-family: 'JetBrains Mono', monospace; font-size: 0.5rem; font-weight: 500;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--purple);
+  padding: 2px 10px; border-radius: 20px;
+  background: rgba(153,69,255,0.08); border: 1px solid rgba(153,69,255,0.15);
+  white-space: nowrap;
+}
+
 /* ====== STATS GRID ====== */
 .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 56px; border-radius: 16px; overflow: hidden; }
 .stat-card {
@@ -684,6 +775,14 @@ footer p { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-s
   .stats-grid, .market-cards, .acq-grid, .chain-grid { grid-template-columns: 1fr; }
   .stat-card { padding: 28px 24px; }
   .friends-text { padding: 28px 24px; }
+  .flow-quests { gap: 6px; }
+  .flow-quest { padding: 10px 4px 8px; }
+  .flow-quest__icon { width: 28px; height: 28px; }
+  .flow-quest__label { font-size: 0.62rem; }
+  .flow-node { max-width: 240px; padding: 16px 18px 12px; }
+  .flow-node__icon { width: 44px; height: 44px; }
+  .flow-node__label { font-size: 0.92rem; }
+  .flow-arrow { height: 36px; }
   .roadmap-track { padding-left: 36px; }
   .roadmap-node { padding: 24px; }
   .roadmap-dot { left: -30px; }
@@ -875,7 +974,7 @@ footer p { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-s
             <span style="color:var(--text-dim);">2.5 years in the trenches</span>
           </div>
           <div style="font-size:1rem; color:var(--text); line-height:1.85; overflow:visible;">
-            <div class="stats-showcase reveal" style="float:right; padding:0; margin:0 0 16px 24px; display:block; width:220px;">
+            <div class="stats-showcase reveal" style="float:right; padding:0; margin:0 0 16px 24px; display:block; width:220px; position:relative; top:40px;">
               <div style="position:relative;">
                 <div class="stats-showcase-inner" style="max-width:220px; cursor:pointer;" id="statsThumb" onclick="flashFootnote()">
                   <img src="stats.png" alt="Trading bot leaderboard — 751x, 557x returns" loading="lazy">
@@ -889,16 +988,303 @@ footer p { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-s
             <p id="statsFootnote" style="font-family:'JetBrains Mono',monospace; font-size:0.7rem; color:var(--text-dim); opacity:0.75; line-height:1.6; margin-top:24px; margin-bottom:0; transition: color 0.3s ease, opacity 0.3s ease;"><span style="color:var(--teal); font-weight:700;">*</span>&nbsp;Performance of a bot I built on a slow, free API (30+ seconds market delay, 95% of parameters missing). Imagine the potential with real-time data.</p>
           </div>
         </div>
-        <!-- RIGHT: Friends pitch -->
+        <!-- RIGHT: Visual flowchart -->
         <div class="reveal reveal-delay-2" id="simple">
           <div class="section-label">The simple version</div>
-          <h3 style="font-family:'Syne',sans-serif; font-size:1.4rem; font-weight:700; margin-bottom:20px;">Okay, here's what I'm actually building</h3>
-          <div class="friends-text" style="padding:32px;">
-            <p>You know how we're all in the trenches, trying to figure out which coins are legit and which ones are about to rug? Going off vibes, Telegram alpha, hoping for the best?</p>
-            <p>I built something that watches <strong>every single trade on Solana</strong>. In real time. Every wallet, every buy, every sell, every coordinated sniper group.</p>
-            <p>Think of it like seeing <strong>everyone's hand at the poker table</strong>. You'd know who's bluffing, who has the nuts, who's about to fold. That's this, but for tokens.</p>
-            <p>Soon it'll tell us: <em>"this coin looks like the ones that ran"</em> or <em>"these wallets just entered and they have an 80% win rate"</em> &mdash; not the basic buy/sell ratio exchanges show you, but a <strong>real, AI-computed win rate</strong> built from our own behavioral data across thousands of tokens. Projected for us. From our dataset. Nobody else has this number.</p>
-            <p class="sign-off">That's it. That's the project.</p>
+          <h3 style="font-family:'Syne',sans-serif; font-size:1.4rem; font-weight:700; margin-bottom:28px;">Okay, here's what I'm actually building</h3>
+
+          <div class="build-flow">
+            <!-- STAGE 1: Foundation -->
+            <div class="flow-node flow-node--foundation">
+              <div class="flow-node__icon">
+                <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="28" cy="28" r="22" stroke="url(#iconGrad1)" stroke-width="1.5" opacity="0.2"/>
+                  <circle cx="28" cy="28" r="14" stroke="url(#iconGrad1)" stroke-width="1" opacity="0.1">
+                    <animate attributeName="r" values="14;16;14" dur="3s" repeatCount="indefinite"/>
+                  </circle>
+                  <!-- Eye shape -->
+                  <path d="M14 28c0 0 6-10 14-10s14 10 14 10-6 10-14 10S14 28 14 28z" stroke="#14f195" stroke-width="1.8" stroke-linejoin="round" fill="rgba(20,241,149,0.06)"/>
+                  <circle cx="28" cy="28" r="5" stroke="#14f195" stroke-width="1.5" fill="rgba(20,241,149,0.1)"/>
+                  <circle cx="28" cy="28" r="2" fill="#14f195">
+                    <animate attributeName="r" values="2;2.5;2" dur="2s" repeatCount="indefinite"/>
+                  </circle>
+                  <!-- Scan lines -->
+                  <line x1="28" y1="8" x2="28" y2="16" stroke="#14f195" stroke-width="0.8" opacity="0.3" stroke-dasharray="2 2">
+                    <animate attributeName="opacity" values="0.3;0.6;0.3" dur="2s" repeatCount="indefinite"/>
+                  </line>
+                  <line x1="28" y1="40" x2="28" y2="48" stroke="#14f195" stroke-width="0.8" opacity="0.3" stroke-dasharray="2 2">
+                    <animate attributeName="opacity" values="0.3;0.6;0.3" dur="2s" repeatCount="indefinite" begin="0.5s"/>
+                  </line>
+                  <line x1="8" y1="28" x2="16" y2="28" stroke="#14f195" stroke-width="0.8" opacity="0.3" stroke-dasharray="2 2">
+                    <animate attributeName="opacity" values="0.3;0.6;0.3" dur="2s" repeatCount="indefinite" begin="1s"/>
+                  </line>
+                  <line x1="40" y1="28" x2="48" y2="28" stroke="#14f195" stroke-width="0.8" opacity="0.3" stroke-dasharray="2 2">
+                    <animate attributeName="opacity" values="0.3;0.6;0.3" dur="2s" repeatCount="indefinite" begin="1.5s"/>
+                  </line>
+                  <defs>
+                    <linearGradient id="iconGrad1" x1="0" y1="0" x2="56" y2="56"><stop stop-color="#14f195"/><stop offset="1" stop-color="#00d4aa"/></linearGradient>
+                  </defs>
+                </svg>
+              </div>
+              <div class="flow-node__label">Real-Time Data</div>
+              <div class="flow-node__sub">Every transaction. Every wallet. Live.</div>
+              <div class="flow-node__badge">NOW</div>
+            </div>
+
+            <!-- Arrow 1 → branching -->
+            <div class="flow-arrow flow-arrow--branch">
+              <svg viewBox="0 0 500 48" fill="none" preserveAspectRatio="xMidYMid meet">
+                <path d="M250 0 L250 16 M250 16 L50 44 M250 16 L150 44 M250 16 L250 44 M250 16 L350 44 M250 16 L450 44" stroke="url(#arrowGrad1)" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="4 3">
+                  <animate attributeName="stroke-dashoffset" values="0;-14" dur="1.5s" repeatCount="indefinite"/>
+                </path>
+                <!-- Arrow tips -->
+                <polygon points="46,40 50,48 54,40" fill="#9945ff" opacity="0.7"/>
+                <polygon points="146,40 150,48 154,40" fill="#9945ff" opacity="0.7"/>
+                <polygon points="246,40 250,48 254,40" fill="#9945ff" opacity="0.7"/>
+                <polygon points="346,40 350,48 354,40" fill="#9945ff" opacity="0.7"/>
+                <polygon points="446,40 450,48 454,40" fill="#9945ff" opacity="0.7"/>
+                <defs>
+                  <linearGradient id="arrowGrad1" x1="0" y1="0" x2="0" y2="48"><stop stop-color="#14f195"/><stop offset="1" stop-color="#9945ff"/></linearGradient>
+                </defs>
+              </svg>
+            </div>
+
+            <!-- STAGE 2: Side quests row -->
+            <div class="flow-quests">
+              <div class="flow-quest">
+                <div class="flow-quest__icon">
+                  <svg viewBox="0 0 40 40" fill="none">
+                    <!-- App / grid icon -->
+                    <rect x="8" y="8" width="10" height="10" rx="2.5" stroke="#9945ff" stroke-width="1.5" fill="rgba(153,69,255,0.08)"/>
+                    <rect x="22" y="8" width="10" height="10" rx="2.5" stroke="#9945ff" stroke-width="1.5" fill="rgba(153,69,255,0.08)" opacity="0.7"/>
+                    <rect x="8" y="22" width="10" height="10" rx="2.5" stroke="#9945ff" stroke-width="1.5" fill="rgba(153,69,255,0.08)" opacity="0.7"/>
+                    <rect x="22" y="22" width="10" height="10" rx="2.5" stroke="#9945ff" stroke-width="1.5" fill="rgba(153,69,255,0.08)" opacity="0.4"/>
+                  </svg>
+                </div>
+                <span class="flow-quest__label">Meta, Daily Trenches Report, Runners To Keep Eye On</span>
+              </div>
+              <div class="flow-quest">
+                <div class="flow-quest__icon">
+                  <svg viewBox="0 0 40 40" fill="none">
+                    <!-- Bot / robot icon -->
+                    <rect x="10" y="14" width="20" height="16" rx="4" stroke="#9945ff" stroke-width="1.5" fill="rgba(153,69,255,0.08)"/>
+                    <rect x="14" y="8" width="12" height="8" rx="3" stroke="#9945ff" stroke-width="1.5" fill="rgba(153,69,255,0.06)"/>
+                    <circle cx="17" cy="22" r="2" fill="#9945ff" opacity="0.6"/>
+                    <circle cx="23" cy="22" r="2" fill="#9945ff" opacity="0.6"/>
+                    <line x1="16" y1="27" x2="24" y2="27" stroke="#9945ff" stroke-width="1.2" stroke-linecap="round" opacity="0.4"/>
+                    <line x1="20" y1="8" x2="20" y2="4" stroke="#9945ff" stroke-width="1.2" stroke-linecap="round" opacity="0.3"/>
+                    <circle cx="20" cy="3" r="1.2" fill="#9945ff" opacity="0.3"/>
+                  </svg>
+                </div>
+                <span class="flow-quest__label">Build-Your-Own Trading Bots</span>
+              </div>
+              <div class="flow-quest">
+                <div class="flow-quest__icon">
+                  <svg viewBox="0 0 40 40" fill="none">
+                    <!-- Alert / bell icon -->
+                    <path d="M20 6C14.5 6 11 10 11 15v5l-3 4h24l-3-4v-5c0-5-3.5-9-9-9z" stroke="#9945ff" stroke-width="1.5" fill="rgba(153,69,255,0.08)" stroke-linejoin="round"/>
+                    <path d="M16.5 27a4 4 0 007 0" stroke="#9945ff" stroke-width="1.5" stroke-linecap="round"/>
+                    <!-- Alert rings -->
+                    <path d="M6 14c0-4 2-7.5 5-9.5" stroke="#9945ff" stroke-width="1" stroke-linecap="round" opacity="0.25"/>
+                    <path d="M34 14c0-4-2-7.5-5-9.5" stroke="#9945ff" stroke-width="1" stroke-linecap="round" opacity="0.25"/>
+                    <circle cx="30" cy="10" r="3" fill="#ff4466" opacity="0.8">
+                      <animate attributeName="opacity" values="0.8;0.3;0.8" dur="1.5s" repeatCount="indefinite"/>
+                    </circle>
+                    <text x="30" y="12" text-anchor="middle" font-size="5" fill="white" font-weight="bold">!</text>
+                  </svg>
+                </div>
+                <span class="flow-quest__label">Precise Memecoin AI Alerts</span>
+              </div>
+              <div class="flow-quest">
+                <div class="flow-quest__icon">
+                  <svg viewBox="0 0 40 40" fill="none">
+                    <!-- Speech bubble with sentiment wave -->
+                    <path d="M8 8h24a2 2 0 012 2v14a2 2 0 01-2 2H18l-6 5v-5H8a2 2 0 01-2-2V10a2 2 0 012-2z" stroke="#9945ff" stroke-width="1.5" fill="rgba(153,69,255,0.08)" stroke-linejoin="round"/>
+                    <!-- Sentiment wave inside bubble -->
+                    <path d="M11 18 Q14 12 17 18 Q20 24 23 18 Q26 12 29 18" stroke="#9945ff" stroke-width="1.4" fill="none" stroke-linecap="round">
+                      <animate attributeName="d" values="M11 18 Q14 12 17 18 Q20 24 23 18 Q26 12 29 18;M11 18 Q14 22 17 18 Q20 14 23 18 Q26 22 29 18;M11 18 Q14 12 17 18 Q20 24 23 18 Q26 12 29 18" dur="3s" repeatCount="indefinite"/>
+                    </path>
+                    <!-- Social icons: tiny twitter bird + heart -->
+                    <circle cx="13" cy="13" r="2" stroke="#9945ff" stroke-width="0.8" fill="rgba(153,69,255,0.15)" opacity="0.6"/>
+                    <path d="M27 12l-1.5 1.5L27 15" stroke="#9945ff" stroke-width="0.8" stroke-linecap="round" opacity="0.5"/>
+                    <!-- Positive indicator dot -->
+                    <circle cx="33" cy="9" r="2.5" fill="#14f195" opacity="0.7">
+                      <animate attributeName="opacity" values="0.7;0.3;0.7" dur="2s" repeatCount="indefinite" begin="0.5s"/>
+                    </circle>
+                    <text x="33" y="11" text-anchor="middle" font-size="4" fill="white" font-weight="bold">+</text>
+                  </svg>
+                </div>
+                <span class="flow-quest__label">AI Social Media Token Analysis</span>
+              </div>
+              <div class="flow-quest">
+                <div class="flow-quest__icon">
+                  <svg viewBox="0 0 40 40" fill="none">
+                    <!-- Magnifying glass searching wallets -->
+                    <circle cx="17" cy="17" r="10" stroke="#9945ff" stroke-width="1.5" fill="rgba(153,69,255,0.06)"/>
+                    <line x1="24.5" y1="24.5" x2="33" y2="33" stroke="#9945ff" stroke-width="2" stroke-linecap="round"/>
+                    <!-- Wallet icon inside lens -->
+                    <rect x="11" y="14" width="12" height="8" rx="1.5" stroke="#9945ff" stroke-width="1.2" fill="rgba(153,69,255,0.1)"/>
+                    <path d="M11 17h12" stroke="#9945ff" stroke-width="0.8" opacity="0.4"/>
+                    <rect x="19" y="16" width="3" height="2.5" rx="0.8" fill="#9945ff" opacity="0.5"/>
+                    <!-- Discovery sparkles -->
+                    <circle cx="32" cy="10" r="1.5" fill="#14f195" opacity="0.6">
+                      <animate attributeName="opacity" values="0.6;1;0.6" dur="1.8s" repeatCount="indefinite"/>
+                    </circle>
+                    <circle cx="8" cy="30" r="1" fill="#14f195" opacity="0.4">
+                      <animate attributeName="opacity" values="0.4;0.8;0.4" dur="1.8s" repeatCount="indefinite" begin="0.6s"/>
+                    </circle>
+                    <path d="M35 16l1.5-1.5M36.5 16L35 14.5" stroke="#14f195" stroke-width="0.8" stroke-linecap="round" opacity="0.5">
+                      <animate attributeName="opacity" values="0.5;1;0.5" dur="2s" repeatCount="indefinite" begin="0.3s"/>
+                    </path>
+                  </svg>
+                </div>
+                <span class="flow-quest__label">Automatic Wallet Finders</span>
+              </div>
+              <div class="flow-quests__tag">Side Quests</div>
+            </div>
+
+            <!-- Arrow 2 → merging -->
+            <div class="flow-arrow flow-arrow--merge">
+              <svg viewBox="0 0 500 48" fill="none" preserveAspectRatio="xMidYMid meet">
+                <path d="M50 4 L250 32 M150 4 L250 32 M250 4 L250 32 M350 4 L250 32 M450 4 L250 32 M250 32 L250 48" stroke="url(#arrowGrad2)" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="4 3">
+                  <animate attributeName="stroke-dashoffset" values="0;-14" dur="1.5s" repeatCount="indefinite"/>
+                </path>
+                <polygon points="246,44 250,52 254,44" fill="#f0b90b" opacity="0.7"/>
+                <defs>
+                  <linearGradient id="arrowGrad2" x1="0" y1="0" x2="0" y2="48"><stop stop-color="#9945ff"/><stop offset="1" stop-color="#f0b90b"/></linearGradient>
+                </defs>
+              </svg>
+            </div>
+
+            <!-- STAGE 3: Ultimate Trencher Portal -->
+            <div class="flow-node flow-node--portal">
+              <div class="flow-node__icon">
+                <svg viewBox="0 0 56 56" fill="none">
+                  <!-- Monitor frame -->
+                  <rect x="6" y="6" width="44" height="32" rx="4" stroke="#00d4aa" stroke-width="1.8" fill="rgba(0,212,170,0.04)"/>
+                  <!-- Screen glow -->
+                  <rect x="10" y="10" width="36" height="24" rx="2" fill="rgba(0,212,170,0.06)" stroke="none"/>
+                  <!-- Dashboard grid lines -->
+                  <line x1="28" y1="10" x2="28" y2="34" stroke="#00d4aa" stroke-width="0.6" opacity="0.2"/>
+                  <line x1="10" y1="22" x2="46" y2="22" stroke="#00d4aa" stroke-width="0.6" opacity="0.2"/>
+                  <!-- Chart in top-left -->
+                  <polyline points="14,20 18,16 22,18 26,13" stroke="#14f195" stroke-width="1.3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                  <circle cx="26" cy="13" r="1.2" fill="#14f195" opacity="0.8">
+                    <animate attributeName="r" values="1.2;1.8;1.2" dur="2s" repeatCount="indefinite"/>
+                  </circle>
+                  <!-- Data rows in top-right -->
+                  <rect x="31" y="13" width="11" height="1.5" rx="0.75" fill="#9945ff" opacity="0.4"/>
+                  <rect x="31" y="16.5" width="8" height="1.5" rx="0.75" fill="#9945ff" opacity="0.25"/>
+                  <rect x="31" y="20" width="10" height="1.5" rx="0.75" fill="#14f195" opacity="0.3"/>
+                  <!-- Wallet list bottom-left -->
+                  <circle cx="14" cy="26" r="1.2" fill="#9945ff" opacity="0.4"/>
+                  <rect x="17" y="25.2" width="8" height="1.5" rx="0.75" fill="#00d4aa" opacity="0.3"/>
+                  <circle cx="14" cy="30" r="1.2" fill="#14f195" opacity="0.4"/>
+                  <rect x="17" y="29.2" width="6" height="1.5" rx="0.75" fill="#00d4aa" opacity="0.2"/>
+                  <!-- Alert badge bottom-right -->
+                  <rect x="31" y="25" width="12" height="7" rx="2" stroke="#f0b90b" stroke-width="0.8" fill="rgba(240,185,11,0.06)"/>
+                  <text x="37" y="30" text-anchor="middle" font-size="4.5" fill="#f0b90b" font-weight="bold" opacity="0.7">LIVE</text>
+                  <!-- Monitor stand -->
+                  <line x1="28" y1="38" x2="28" y2="44" stroke="#00d4aa" stroke-width="1.5" stroke-linecap="round" opacity="0.4"/>
+                  <line x1="20" y1="44" x2="36" y2="44" stroke="#00d4aa" stroke-width="1.5" stroke-linecap="round" opacity="0.3"/>
+                  <!-- Ambient glow pulse -->
+                  <rect x="8" y="8" width="40" height="28" rx="3" stroke="#00d4aa" stroke-width="0.5" fill="none" opacity="0.15">
+                    <animate attributeName="opacity" values="0.15;0.3;0.15" dur="3s" repeatCount="indefinite"/>
+                  </rect>
+                </svg>
+              </div>
+              <div class="flow-node__label">Ultimate Trencher Portal</div>
+              <div class="flow-node__sub">The second screen every trencher has open.</div>
+            </div>
+
+            <!-- Arrow → ML -->
+            <div class="flow-arrow flow-arrow--to-ml">
+              <svg viewBox="0 0 60 48" fill="none" preserveAspectRatio="xMidYMid meet">
+                <line x1="30" y1="0" x2="30" y2="44" stroke="url(#arrowGradPortal)" stroke-width="1.5" stroke-dasharray="4 3">
+                  <animate attributeName="stroke-dashoffset" values="0;-14" dur="1.5s" repeatCount="indefinite"/>
+                </line>
+                <polygon points="24,40 30,50 36,40" fill="#f0b90b" opacity="0.7"/>
+                <defs>
+                  <linearGradient id="arrowGradPortal" x1="0" y1="0" x2="0" y2="48"><stop stop-color="#00d4aa"/><stop offset="1" stop-color="#f0b90b"/></linearGradient>
+                </defs>
+              </svg>
+            </div>
+
+            <!-- STAGE 4: ML -->
+            <div class="flow-node flow-node--ml">
+              <div class="flow-node__icon">
+                <svg viewBox="0 0 56 56" fill="none">
+                  <!-- Brain icon -->
+                  <circle cx="28" cy="28" r="20" stroke="#f0b90b" stroke-width="1" opacity="0.15"/>
+                  <!-- Left hemisphere -->
+                  <path d="M28 12 C20 12 14 18 14 26 C14 32 18 37 24 40 L28 42" stroke="#f0b90b" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+                  <!-- Right hemisphere -->
+                  <path d="M28 12 C36 12 42 18 42 26 C42 32 38 37 32 40 L28 42" stroke="#f0b90b" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+                  <!-- Brain folds left -->
+                  <path d="M18 20 Q22 22 20 26" stroke="#f0b90b" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.5"/>
+                  <path d="M16 28 Q20 27 22 32" stroke="#f0b90b" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.4"/>
+                  <!-- Brain folds right -->
+                  <path d="M38 20 Q34 22 36 26" stroke="#f0b90b" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.5"/>
+                  <path d="M40 28 Q36 27 34 32" stroke="#f0b90b" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.4"/>
+                  <!-- Center line -->
+                  <line x1="28" y1="14" x2="28" y2="40" stroke="#f0b90b" stroke-width="1" opacity="0.2"/>
+                  <!-- Neural sparks -->
+                  <circle cx="22" cy="18" r="1.5" fill="#f0b90b" opacity="0.6">
+                    <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" repeatCount="indefinite"/>
+                  </circle>
+                  <circle cx="35" cy="22" r="1.2" fill="#f0b90b" opacity="0.4">
+                    <animate attributeName="opacity" values="0.4;0.9;0.4" dur="2s" repeatCount="indefinite" begin="0.7s"/>
+                  </circle>
+                  <circle cx="24" cy="34" r="1" fill="#f0b90b" opacity="0.5">
+                    <animate attributeName="opacity" values="0.5;1;0.5" dur="2s" repeatCount="indefinite" begin="1.3s"/>
+                  </circle>
+                </svg>
+              </div>
+              <div class="flow-node__label">Machine Learning</div>
+              <div class="flow-node__sub">Patterns. Predictions. Adapts daily.</div>
+            </div>
+
+            <!-- Arrow 3 → final -->
+            <div class="flow-arrow flow-arrow--final">
+              <svg viewBox="0 0 60 48" fill="none" preserveAspectRatio="xMidYMid meet">
+                <line x1="30" y1="0" x2="30" y2="44" stroke="url(#arrowGrad3)" stroke-width="2" stroke-dasharray="4 3">
+                  <animate attributeName="stroke-dashoffset" values="0;-14" dur="1.5s" repeatCount="indefinite"/>
+                </line>
+                <polygon points="24,40 30,50 36,40" fill="#14f195" opacity="0.8"/>
+                <defs>
+                  <linearGradient id="arrowGrad3" x1="0" y1="0" x2="0" y2="48"><stop stop-color="#f0b90b"/><stop offset="1" stop-color="#14f195"/></linearGradient>
+                </defs>
+              </svg>
+            </div>
+
+            <!-- STAGE 4: The Goal -->
+            <div class="flow-node flow-node--goal">
+              <div class="flow-node__icon flow-node__icon--goal">
+                <svg viewBox="0 0 56 56" fill="none">
+                  <!-- Rocket / autonomous bot -->
+                  <path d="M28 8 L22 28 L28 25 L34 28 Z" stroke="#14f195" stroke-width="1.8" fill="rgba(20,241,149,0.1)" stroke-linejoin="round"/>
+                  <path d="M24 28 L22 36 L28 32 L34 36 L32 28" stroke="#14f195" stroke-width="1.5" fill="rgba(20,241,149,0.06)" stroke-linejoin="round"/>
+                  <!-- Thrust flames -->
+                  <path d="M26 36 L28 44 L30 36" stroke="#f0b90b" stroke-width="1.5" fill="rgba(240,185,11,0.15)" stroke-linejoin="round">
+                    <animate attributeName="d" values="M26 36 L28 44 L30 36;M25 36 L28 46 L31 36;M26 36 L28 44 L30 36" dur="0.8s" repeatCount="indefinite"/>
+                  </path>
+                  <path d="M27 38 L28 42 L29 38" stroke="#ff4466" stroke-width="1" fill="rgba(255,68,102,0.2)" stroke-linejoin="round" opacity="0.6">
+                    <animate attributeName="opacity" values="0.6;0.9;0.6" dur="0.6s" repeatCount="indefinite"/>
+                  </path>
+                  <!-- Orbit rings -->
+                  <ellipse cx="28" cy="24" rx="18" ry="6" stroke="#14f195" stroke-width="0.8" opacity="0.12" transform="rotate(-20 28 24)"/>
+                  <ellipse cx="28" cy="24" rx="18" ry="6" stroke="#9945ff" stroke-width="0.8" opacity="0.12" transform="rotate(20 28 24)"/>
+                  <!-- Speed lines -->
+                  <line x1="14" y1="18" x2="10" y2="14" stroke="#14f195" stroke-width="0.8" opacity="0.2"/>
+                  <line x1="42" y1="18" x2="46" y2="14" stroke="#14f195" stroke-width="0.8" opacity="0.2"/>
+                  <line x1="16" y1="32" x2="12" y2="34" stroke="#14f195" stroke-width="0.8" opacity="0.15"/>
+                  <line x1="40" y1="32" x2="44" y2="34" stroke="#14f195" stroke-width="0.8" opacity="0.15"/>
+                </svg>
+              </div>
+              <div class="flow-node__label">Autonomous Trade Bot</div>
+              <div class="flow-node__sub">Fully automated. The endgame.</div>
+              <div class="flow-node__badge flow-node__badge--goal">THE GOAL</div>
+            </div>
           </div>
         </div>
       </div>
