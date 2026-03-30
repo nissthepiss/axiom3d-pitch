@@ -360,7 +360,13 @@ h1, h2, h3, h4 { font-family: 'Syne', sans-serif; font-weight: 700; letter-spaci
 
 .flow-node--foundation { border-color: rgba(20,241,149,0.15); }
 .flow-node--foundation:hover { border-color: rgba(20,241,149,0.3); box-shadow: 0 0 24px rgba(20,241,149,0.08); }
-.flow-node--portal { border-color: rgba(0,212,170,0.18); max-width: 300px; }
+/* Side-by-side duo row */
+.flow-duo {
+  display: flex; gap: 16px; justify-content: center; align-items: stretch; width: 100%;
+}
+.flow-duo .flow-node { flex: 1; max-width: 220px; }
+
+.flow-node--portal { border-color: rgba(0,212,170,0.18); }
 .flow-node--portal:hover { border-color: rgba(0,212,170,0.35); box-shadow: 0 0 28px rgba(0,212,170,0.1); }
 .flow-node--ml { border-color: rgba(240,185,11,0.15); }
 .flow-node--ml:hover { border-color: rgba(240,185,11,0.3); box-shadow: 0 0 24px rgba(240,185,11,0.08); }
@@ -780,6 +786,8 @@ footer p { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-s
   .flow-quest__icon { width: 28px; height: 28px; }
   .flow-quest__label { font-size: 0.62rem; }
   .flow-node { max-width: 240px; padding: 16px 18px 12px; }
+  .flow-duo { gap: 10px; }
+  .flow-duo .flow-node { max-width: 180px; }
   .flow-node__icon { width: 44px; height: 44px; }
   .flow-node__label { font-size: 0.92rem; }
   .flow-arrow { height: 36px; }
@@ -1144,114 +1152,89 @@ footer p { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-s
               <div class="flow-quests__tag">Side Quests</div>
             </div>
 
-            <!-- Arrow 2 → merging -->
+            <!-- Arrow 2 → branching to Portal + ML -->
             <div class="flow-arrow flow-arrow--merge">
-              <svg viewBox="0 0 500 48" fill="none" preserveAspectRatio="xMidYMid meet">
-                <path d="M50 4 L250 32 M150 4 L250 32 M250 4 L250 32 M350 4 L250 32 M450 4 L250 32 M250 32 L250 48" stroke="url(#arrowGrad2)" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="4 3">
+              <svg viewBox="0 0 300 48" fill="none" preserveAspectRatio="xMidYMid meet">
+                <path d="M150 0 L150 16 M150 16 L75 44 M150 16 L225 44" stroke="url(#arrowGrad2)" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="4 3">
                   <animate attributeName="stroke-dashoffset" values="0;-14" dur="1.5s" repeatCount="indefinite"/>
                 </path>
-                <polygon points="246,44 250,52 254,44" fill="#f0b90b" opacity="0.7"/>
+                <polygon points="71,40 75,48 79,40" fill="#00d4aa" opacity="0.7"/>
+                <polygon points="221,40 225,48 229,40" fill="#f0b90b" opacity="0.7"/>
                 <defs>
-                  <linearGradient id="arrowGrad2" x1="0" y1="0" x2="0" y2="48"><stop stop-color="#9945ff"/><stop offset="1" stop-color="#f0b90b"/></linearGradient>
+                  <linearGradient id="arrowGrad2" x1="0" y1="0" x2="0" y2="48"><stop stop-color="#9945ff"/><stop offset="1" stop-color="#00d4aa"/></linearGradient>
                 </defs>
               </svg>
             </div>
 
-            <!-- STAGE 3: Ultimate Trencher Portal -->
-            <div class="flow-node flow-node--portal">
-              <div class="flow-node__icon">
-                <svg viewBox="0 0 56 56" fill="none">
-                  <!-- Monitor frame -->
-                  <rect x="6" y="6" width="44" height="32" rx="4" stroke="#00d4aa" stroke-width="1.8" fill="rgba(0,212,170,0.04)"/>
-                  <!-- Screen glow -->
-                  <rect x="10" y="10" width="36" height="24" rx="2" fill="rgba(0,212,170,0.06)" stroke="none"/>
-                  <!-- Dashboard grid lines -->
-                  <line x1="28" y1="10" x2="28" y2="34" stroke="#00d4aa" stroke-width="0.6" opacity="0.2"/>
-                  <line x1="10" y1="22" x2="46" y2="22" stroke="#00d4aa" stroke-width="0.6" opacity="0.2"/>
-                  <!-- Chart in top-left -->
-                  <polyline points="14,20 18,16 22,18 26,13" stroke="#14f195" stroke-width="1.3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-                  <circle cx="26" cy="13" r="1.2" fill="#14f195" opacity="0.8">
-                    <animate attributeName="r" values="1.2;1.8;1.2" dur="2s" repeatCount="indefinite"/>
-                  </circle>
-                  <!-- Data rows in top-right -->
-                  <rect x="31" y="13" width="11" height="1.5" rx="0.75" fill="#9945ff" opacity="0.4"/>
-                  <rect x="31" y="16.5" width="8" height="1.5" rx="0.75" fill="#9945ff" opacity="0.25"/>
-                  <rect x="31" y="20" width="10" height="1.5" rx="0.75" fill="#14f195" opacity="0.3"/>
-                  <!-- Wallet list bottom-left -->
-                  <circle cx="14" cy="26" r="1.2" fill="#9945ff" opacity="0.4"/>
-                  <rect x="17" y="25.2" width="8" height="1.5" rx="0.75" fill="#00d4aa" opacity="0.3"/>
-                  <circle cx="14" cy="30" r="1.2" fill="#14f195" opacity="0.4"/>
-                  <rect x="17" y="29.2" width="6" height="1.5" rx="0.75" fill="#00d4aa" opacity="0.2"/>
-                  <!-- Alert badge bottom-right -->
-                  <rect x="31" y="25" width="12" height="7" rx="2" stroke="#f0b90b" stroke-width="0.8" fill="rgba(240,185,11,0.06)"/>
-                  <text x="37" y="30" text-anchor="middle" font-size="4.5" fill="#f0b90b" font-weight="bold" opacity="0.7">LIVE</text>
-                  <!-- Monitor stand -->
-                  <line x1="28" y1="38" x2="28" y2="44" stroke="#00d4aa" stroke-width="1.5" stroke-linecap="round" opacity="0.4"/>
-                  <line x1="20" y1="44" x2="36" y2="44" stroke="#00d4aa" stroke-width="1.5" stroke-linecap="round" opacity="0.3"/>
-                  <!-- Ambient glow pulse -->
-                  <rect x="8" y="8" width="40" height="28" rx="3" stroke="#00d4aa" stroke-width="0.5" fill="none" opacity="0.15">
-                    <animate attributeName="opacity" values="0.15;0.3;0.15" dur="3s" repeatCount="indefinite"/>
-                  </rect>
-                </svg>
+            <!-- STAGE 3: Portal + ML side by side -->
+            <div class="flow-duo">
+              <!-- Portal -->
+              <div class="flow-node flow-node--portal">
+                <div class="flow-node__icon">
+                  <svg viewBox="0 0 56 56" fill="none">
+                    <rect x="6" y="6" width="44" height="32" rx="4" stroke="#00d4aa" stroke-width="1.8" fill="rgba(0,212,170,0.04)"/>
+                    <rect x="10" y="10" width="36" height="24" rx="2" fill="rgba(0,212,170,0.06)" stroke="none"/>
+                    <line x1="28" y1="10" x2="28" y2="34" stroke="#00d4aa" stroke-width="0.6" opacity="0.2"/>
+                    <line x1="10" y1="22" x2="46" y2="22" stroke="#00d4aa" stroke-width="0.6" opacity="0.2"/>
+                    <polyline points="14,20 18,16 22,18 26,13" stroke="#14f195" stroke-width="1.3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                    <circle cx="26" cy="13" r="1.2" fill="#14f195" opacity="0.8">
+                      <animate attributeName="r" values="1.2;1.8;1.2" dur="2s" repeatCount="indefinite"/>
+                    </circle>
+                    <rect x="31" y="13" width="11" height="1.5" rx="0.75" fill="#9945ff" opacity="0.4"/>
+                    <rect x="31" y="16.5" width="8" height="1.5" rx="0.75" fill="#9945ff" opacity="0.25"/>
+                    <rect x="31" y="20" width="10" height="1.5" rx="0.75" fill="#14f195" opacity="0.3"/>
+                    <circle cx="14" cy="26" r="1.2" fill="#9945ff" opacity="0.4"/>
+                    <rect x="17" y="25.2" width="8" height="1.5" rx="0.75" fill="#00d4aa" opacity="0.3"/>
+                    <circle cx="14" cy="30" r="1.2" fill="#14f195" opacity="0.4"/>
+                    <rect x="17" y="29.2" width="6" height="1.5" rx="0.75" fill="#00d4aa" opacity="0.2"/>
+                    <rect x="31" y="25" width="12" height="7" rx="2" stroke="#f0b90b" stroke-width="0.8" fill="rgba(240,185,11,0.06)"/>
+                    <text x="37" y="30" text-anchor="middle" font-size="4.5" fill="#f0b90b" font-weight="bold" opacity="0.7">LIVE</text>
+                    <line x1="28" y1="38" x2="28" y2="44" stroke="#00d4aa" stroke-width="1.5" stroke-linecap="round" opacity="0.4"/>
+                    <line x1="20" y1="44" x2="36" y2="44" stroke="#00d4aa" stroke-width="1.5" stroke-linecap="round" opacity="0.3"/>
+                    <rect x="8" y="8" width="40" height="28" rx="3" stroke="#00d4aa" stroke-width="0.5" fill="none" opacity="0.15">
+                      <animate attributeName="opacity" values="0.15;0.3;0.15" dur="3s" repeatCount="indefinite"/>
+                    </rect>
+                  </svg>
+                </div>
+                <div class="flow-node__label">Ultimate Trencher Portal</div>
+                <div class="flow-node__sub">The second screen every trencher has open.</div>
               </div>
-              <div class="flow-node__label">Ultimate Trencher Portal</div>
-              <div class="flow-node__sub">The second screen every trencher has open.</div>
-            </div>
 
-            <!-- Arrow → ML -->
-            <div class="flow-arrow flow-arrow--to-ml">
-              <svg viewBox="0 0 60 48" fill="none" preserveAspectRatio="xMidYMid meet">
-                <line x1="30" y1="0" x2="30" y2="44" stroke="url(#arrowGradPortal)" stroke-width="1.5" stroke-dasharray="4 3">
-                  <animate attributeName="stroke-dashoffset" values="0;-14" dur="1.5s" repeatCount="indefinite"/>
-                </line>
-                <polygon points="24,40 30,50 36,40" fill="#f0b90b" opacity="0.7"/>
-                <defs>
-                  <linearGradient id="arrowGradPortal" x1="0" y1="0" x2="0" y2="48"><stop stop-color="#00d4aa"/><stop offset="1" stop-color="#f0b90b"/></linearGradient>
-                </defs>
-              </svg>
-            </div>
-
-            <!-- STAGE 4: ML -->
-            <div class="flow-node flow-node--ml">
-              <div class="flow-node__icon">
-                <svg viewBox="0 0 56 56" fill="none">
-                  <!-- Brain icon -->
-                  <circle cx="28" cy="28" r="20" stroke="#f0b90b" stroke-width="1" opacity="0.15"/>
-                  <!-- Left hemisphere -->
-                  <path d="M28 12 C20 12 14 18 14 26 C14 32 18 37 24 40 L28 42" stroke="#f0b90b" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-                  <!-- Right hemisphere -->
-                  <path d="M28 12 C36 12 42 18 42 26 C42 32 38 37 32 40 L28 42" stroke="#f0b90b" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-                  <!-- Brain folds left -->
-                  <path d="M18 20 Q22 22 20 26" stroke="#f0b90b" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.5"/>
-                  <path d="M16 28 Q20 27 22 32" stroke="#f0b90b" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.4"/>
-                  <!-- Brain folds right -->
-                  <path d="M38 20 Q34 22 36 26" stroke="#f0b90b" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.5"/>
-                  <path d="M40 28 Q36 27 34 32" stroke="#f0b90b" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.4"/>
-                  <!-- Center line -->
-                  <line x1="28" y1="14" x2="28" y2="40" stroke="#f0b90b" stroke-width="1" opacity="0.2"/>
-                  <!-- Neural sparks -->
-                  <circle cx="22" cy="18" r="1.5" fill="#f0b90b" opacity="0.6">
-                    <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" repeatCount="indefinite"/>
-                  </circle>
-                  <circle cx="35" cy="22" r="1.2" fill="#f0b90b" opacity="0.4">
-                    <animate attributeName="opacity" values="0.4;0.9;0.4" dur="2s" repeatCount="indefinite" begin="0.7s"/>
-                  </circle>
-                  <circle cx="24" cy="34" r="1" fill="#f0b90b" opacity="0.5">
-                    <animate attributeName="opacity" values="0.5;1;0.5" dur="2s" repeatCount="indefinite" begin="1.3s"/>
-                  </circle>
-                </svg>
+              <!-- ML -->
+              <div class="flow-node flow-node--ml">
+                <div class="flow-node__icon">
+                  <svg viewBox="0 0 56 56" fill="none">
+                    <circle cx="28" cy="28" r="20" stroke="#f0b90b" stroke-width="1" opacity="0.15"/>
+                    <path d="M28 12 C20 12 14 18 14 26 C14 32 18 37 24 40 L28 42" stroke="#f0b90b" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+                    <path d="M28 12 C36 12 42 18 42 26 C42 32 38 37 32 40 L28 42" stroke="#f0b90b" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+                    <path d="M18 20 Q22 22 20 26" stroke="#f0b90b" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.5"/>
+                    <path d="M16 28 Q20 27 22 32" stroke="#f0b90b" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.4"/>
+                    <path d="M38 20 Q34 22 36 26" stroke="#f0b90b" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.5"/>
+                    <path d="M40 28 Q36 27 34 32" stroke="#f0b90b" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.4"/>
+                    <line x1="28" y1="14" x2="28" y2="40" stroke="#f0b90b" stroke-width="1" opacity="0.2"/>
+                    <circle cx="22" cy="18" r="1.5" fill="#f0b90b" opacity="0.6">
+                      <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" repeatCount="indefinite"/>
+                    </circle>
+                    <circle cx="35" cy="22" r="1.2" fill="#f0b90b" opacity="0.4">
+                      <animate attributeName="opacity" values="0.4;0.9;0.4" dur="2s" repeatCount="indefinite" begin="0.7s"/>
+                    </circle>
+                    <circle cx="24" cy="34" r="1" fill="#f0b90b" opacity="0.5">
+                      <animate attributeName="opacity" values="0.5;1;0.5" dur="2s" repeatCount="indefinite" begin="1.3s"/>
+                    </circle>
+                  </svg>
+                </div>
+                <div class="flow-node__label">Machine Learning</div>
+                <div class="flow-node__sub">Patterns. Predictions. Adapts daily.</div>
               </div>
-              <div class="flow-node__label">Machine Learning</div>
-              <div class="flow-node__sub">Patterns. Predictions. Adapts daily.</div>
             </div>
 
-            <!-- Arrow 3 → final -->
-            <div class="flow-arrow flow-arrow--final">
-              <svg viewBox="0 0 60 48" fill="none" preserveAspectRatio="xMidYMid meet">
-                <line x1="30" y1="0" x2="30" y2="44" stroke="url(#arrowGrad3)" stroke-width="2" stroke-dasharray="4 3">
+            <!-- Arrow 3 → merging to final -->
+            <div class="flow-arrow flow-arrow--final-merge">
+              <svg viewBox="0 0 300 48" fill="none" preserveAspectRatio="xMidYMid meet">
+                <path d="M75 4 L150 32 M225 4 L150 32 M150 32 L150 48" stroke="url(#arrowGrad3)" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="4 3">
                   <animate attributeName="stroke-dashoffset" values="0;-14" dur="1.5s" repeatCount="indefinite"/>
-                </line>
-                <polygon points="24,40 30,50 36,40" fill="#14f195" opacity="0.8"/>
+                </path>
+                <polygon points="146,44 150,52 154,44" fill="#14f195" opacity="0.8"/>
                 <defs>
                   <linearGradient id="arrowGrad3" x1="0" y1="0" x2="0" y2="48"><stop stop-color="#f0b90b"/><stop offset="1" stop-color="#14f195"/></linearGradient>
                 </defs>
